@@ -3,6 +3,7 @@ package com.life.pluslife.activities
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.util.Patterns
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -61,7 +62,7 @@ class AuthActivity : AppCompatActivity() {
                     .requestEmail()
                     .build()
             val googleClient = GoogleSignIn.getClient( this, googleConf)
-            //googleClient.signOut()
+            googleClient.signOut()
 
             startActivityForResult( googleClient.signInIntent, Constants.GOOGLE_SIGN_IN)
         }
@@ -143,45 +144,49 @@ class AuthActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if ( requestCode == Constants.GOOGLE_SIGN_IN){
-            val task = GoogleSignIn.getSignedInAccountFromIntent( data )
+            if ( data != null){
+                Log.e(TAG, "DATA: " + data.toString())
+                val task = GoogleSignIn.getSignedInAccountFromIntent( data )
 
-            try {
-                val account = task.getResult( ApiException::class.java )
+                try {
+                    val account = task.getResult( ApiException::class.java )!!
+                    Log.d(TAG, "firebaseAuthWithGoogle: " + account.id)
+                    if ( account != null){
 
-                if ( account != null){
+                        val credential = GoogleAuthProvider.getCredential( account.idToken, null )
 
-                    val credential = GoogleAuthProvider.getCredential( account.idToken, null )
+                        FirebaseAuth.getInstance().signInWithCredential( credential )
+                            .addOnCompleteListener{
+                                if ( it.isSuccessful ){
 
-                    FirebaseAuth.getInstance().signInWithCredential( credential )
-                        .addOnCompleteListener{
-                            if ( it.isSuccessful ){
+                                    val user = User()
+                                    user.email = account.email
 
-                                val user = User()
-                                user.email = account.email
+                                    LocalHelper(this).setUser(user)
+                                    startActivity( Intent(this, MainActivity::class.java) )
+                                    finish()
 
-                                LocalHelper(this).setUser(user)
-                                startActivity( Intent(this, MainActivity::class.java) )
-                                finish()
-
-                            } else {
-                                Tools.alertDialog(
-                                    this,
-                                    "Error al ingresar con Google",
-                                    it.exception?.message.toString(),
-                                    "OK", {}, {}
-                                )
+                                } else {
+                                    Tools.alertDialog(
+                                        this,
+                                        "Error al ingresar con Google",
+                                        it.exception?.message.toString(),
+                                        "OK", {}, {}
+                                    )
+                                }
                             }
-                        }
+                    }
+                } catch ( e: ApiException){
+                    Tools.alertDialog(
+                        this,
+                        "Error al ingresar con Google...",
+                        e.message,
+                        "OK", {}, {}
+                    )
                 }
-            } catch ( e: ApiException){
-                Tools.alertDialog(
-                    this,
-                    "Error al ingresar con Google...",
-                     e.message,
-                    "OK", {}, {}
-                )
+            } else {
+                Log.e(TAG, "data empty")
             }
-
         }
 
     }

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "43169395631",
+    "firebase_url": "https://plusvida-2k20.firebaseio.com",
+    "project_id": "plusvida-2k20",
+    "storage_bucket": "plusvida-2k20.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:43169395631:android:8a063337a26f4ac059755a",
+        "android_client_info": {
+          "package_name": "com.life.pluslife"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "43169395631-a12npqdicpf3akf5bs9fktvnn06rokg6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRGQ-ckmwlAcUoMovsm7g5RRrrnwRXyf8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "43169395631-a12npqdicpf3akf5bs9fktvnn06rokg6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

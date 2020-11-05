@@ -2,6 +2,7 @@ package com.life.pluslife.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.life.pluslife.MainActivity
 import com.life.pluslife.R
@@ -11,10 +12,9 @@ import com.life.pluslife.pojos.User
 class SplashActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        //setTheme(R.style.AppTheme_Launcher)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
 
+        Log.e("Splash", "inside")
         val localHelper = LocalHelper(this)
 
         if ( localHelper.getUser() != null ){
@@ -22,6 +22,8 @@ class SplashActivity: AppCompatActivity() {
         } else {
             startActivity( Intent(this, AuthActivity::class.java) )
         }
+
+        Log.e("Splash", "finish")
         finish()
 
     }

@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.activity_auth.*
 
 class AuthActivity : AppCompatActivity() {
 
-    private val TAG = "AuthActivity"
+    private var TAG = "AuthActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -144,48 +144,44 @@ class AuthActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if ( requestCode == Constants.GOOGLE_SIGN_IN){
-            if ( data != null){
-                Log.e(TAG, "DATA: " + data.toString())
-                val task = GoogleSignIn.getSignedInAccountFromIntent( data )
 
-                try {
-                    val account = task.getResult( ApiException::class.java )!!
-                    Log.d(TAG, "firebaseAuthWithGoogle: " + account.id)
-                    if ( account != null){
+            val task = GoogleSignIn.getSignedInAccountFromIntent( data )
 
-                        val credential = GoogleAuthProvider.getCredential( account.idToken, null )
+            try {
+                val account = task.getResult( ApiException::class.java )!!
 
-                        FirebaseAuth.getInstance().signInWithCredential( credential )
-                            .addOnCompleteListener{
-                                if ( it.isSuccessful ){
+                if ( account != null){
 
-                                    val user = User()
-                                    user.email = account.email
+                    val credential = GoogleAuthProvider.getCredential( account.idToken, null )
 
-                                    LocalHelper(this).setUser(user)
-                                    startActivity( Intent(this, MainActivity::class.java) )
-                                    finish()
+                    FirebaseAuth.getInstance().signInWithCredential( credential )
+                        .addOnCompleteListener{
+                            if ( it.isSuccessful ){
 
-                                } else {
-                                    Tools.alertDialog(
-                                        this,
-                                        "Error al ingresar con Google",
-                                        it.exception?.message.toString(),
-                                        "OK", {}, {}
-                                    )
-                                }
+                                val user = User()
+                                user.email = account.email
+
+                                LocalHelper(this).setUser(user)
+                                startActivity( Intent(this, MainActivity::class.java) )
+                                finish()
+
+                            } else {
+                                Tools.alertDialog(
+                                    this,
+                                    "Error al ingresar con Google",
+                                    it.exception?.message.toString(),
+                                    "OK", {}, {}
+                                )
                             }
-                    }
-                } catch ( e: ApiException){
-                    Tools.alertDialog(
-                        this,
-                        "Error al ingresar con Google...",
-                        e.message,
-                        "OK", {}, {}
-                    )
+                        }
                 }
-            } else {
-                Log.e(TAG, "data empty")
+            } catch ( e: ApiException){
+                Tools.alertDialog(
+                    this,
+                    "Error al ingresar con Google",
+                    e.message,
+                    "OK", {}, {}
+                )
             }
         }
 

@@ -39,7 +39,9 @@ class OptionsFragment: Fragment() {
                     /*PROCESS POSITIVE BUTTON*/
                     FirebaseAuth.getInstance().signOut()
                     context?.let { LocalHelper(it).setUser(null) }
-                    //startActivity( Intent(context, AuthActivity::class.java) )
+
+                    activity?.finish()
+                    startActivity( Intent(context, AuthActivity::class.java) )
                 }
             )
         }

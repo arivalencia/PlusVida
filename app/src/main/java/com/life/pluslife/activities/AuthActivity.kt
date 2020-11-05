@@ -152,30 +152,31 @@ class AuthActivity : AppCompatActivity() {
 
                     val credential = GoogleAuthProvider.getCredential( account.idToken, null )
 
-                    FirebaseAuth.getInstance().signInWithCredential( credential ).addOnCompleteListener{
-                        if ( it.isSuccessful ){
+                    FirebaseAuth.getInstance().signInWithCredential( credential )
+                        .addOnCompleteListener{
+                            if ( it.isSuccessful ){
 
-                            val user = User()
-                            user.email = account.email
+                                val user = User()
+                                user.email = account.email
 
-                            LocalHelper(this).setUser(user)
-                            startActivity( Intent(this, MainActivity::class.java) )
-                            finish()
+                                LocalHelper(this).setUser(user)
+                                startActivity( Intent(this, MainActivity::class.java) )
+                                finish()
 
-                        } else {
-                            Tools.alertDialog(
-                                this,
-                                "Error al ingresar con Google",
-                                it.exception?.message.toString(),
-                                "OK", {}, {}
-                            )
+                            } else {
+                                Tools.alertDialog(
+                                    this,
+                                    "Error al ingresar con Google",
+                                    it.exception?.message.toString(),
+                                    "OK", {}, {}
+                                )
+                            }
                         }
-                    }
                 }
             } catch ( e: ApiException){
                 Tools.alertDialog(
                     this,
-                    "Error al ingresar con Google",
+                    "Error al ingresar con Google...",
                      e.message,
                     "OK", {}, {}
                 )

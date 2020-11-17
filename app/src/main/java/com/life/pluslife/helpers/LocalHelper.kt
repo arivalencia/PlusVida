@@ -1,8 +1,6 @@
 package com.life.pluslife.helpers
 
-import android.app.Activity
 import android.content.Context
-import android.preference.PreferenceManager
 import com.google.gson.Gson
 import com.life.pluslife.R
 import com.life.pluslife.pojos.User
@@ -30,4 +28,5 @@ class LocalHelper(val context: Context) {
         val gson = Gson()
         return gson.fromJson<User>(serializedData, User::class.java)
     }
+
 }

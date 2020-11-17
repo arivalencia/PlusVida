@@ -90,8 +90,7 @@ class AuthActivity : AppCompatActivity() {
             .addOnCompleteListener{
                 if ( it.isSuccessful ){
 
-                    val user = User()
-                    user.email = email
+                    val user = User(email, null)
 
                     LocalHelper(this).setUser(user)
                     startActivity( Intent(this, MainActivity::class.java) )
@@ -117,8 +116,7 @@ class AuthActivity : AppCompatActivity() {
             .addOnCompleteListener{
                 if ( it.isSuccessful ){
 
-                    val user = User()
-                    user.email = email
+                    val user = User(email, null)
 
                     LocalHelper(this).setUser(user)
                     startActivity( Intent(this, MainActivity::class.java) )
@@ -158,8 +156,7 @@ class AuthActivity : AppCompatActivity() {
                         .addOnCompleteListener{
                             if ( it.isSuccessful ){
 
-                                val user = User()
-                                user.email = account.email
+                                val user = User(account.email + "", null)
 
                                 LocalHelper(this).setUser(user)
                                 startActivity( Intent(this, MainActivity::class.java) )

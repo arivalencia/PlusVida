@@ -6,7 +6,8 @@
 
     <color name="colorPrimary">#D32F2F</color>
     <color name="colorPrimaryDark">#B71C1C</color>
-    <color name="colorAccent">#0288D1</color>
+    <color name="colorAccent">#B71C1C</color>
+    <!--#0288D1 -->
 
     <color name="white">#fff</color>
     <color name="gray">#eeeeee</color>

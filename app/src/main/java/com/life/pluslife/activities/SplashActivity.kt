@@ -18,7 +18,11 @@ class SplashActivity: AppCompatActivity() {
         val localHelper = LocalHelper(this)
 
         if ( localHelper.getUser() != null ){
-            startActivity( Intent(this, MainActivity::class.java) )
+            if ( localHelper.getUser()?.email != null ) {
+                startActivity( Intent(this, MainActivity::class.java) )
+            } else {
+                startActivity( Intent(this, AuthActivity::class.java) )
+            }
         } else {
             startActivity( Intent(this, AuthActivity::class.java) )
         }

@@ -157,7 +157,7 @@ class AuthActivity : AppCompatActivity() {
                             if ( it.isSuccessful ){
 
                                 val user = User(account.email + "", null)
-
+                                Log.e("ACCOUNT", user.toString())
                                 LocalHelper(this).setUser(user)
                                 startActivity( Intent(this, MainActivity::class.java) )
                                 finish()

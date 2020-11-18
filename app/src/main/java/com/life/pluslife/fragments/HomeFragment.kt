@@ -18,6 +18,8 @@ import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment: Fragment() {
 
+    val localHelper = getContext()?.let { LocalHelper(it) }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,7 +38,6 @@ class HomeFragment: Fragment() {
 
 
         if (user?.email?.isNotEmpty()!!){
-
             if ( user.data != null){
                 title.text = "Ari Valencia"
                 registered.visibility = View.VISIBLE
@@ -45,6 +46,11 @@ class HomeFragment: Fragment() {
             } else {
                 db.collection("users").document(user.email!!).get().addOnSuccessListener {
                     if ( it.exists() ){
+
+                        val newObject = Gson().fromJson<UserData>(it["data"].toString(), UserData::class.java)
+                        Log.e("NEW OBJECT", newObject.toString())
+                        user.data = newObject
+                        context?.let { it1 -> LocalHelper(it1).setUser(user) }
                         Log.e("2", "2")
                         title.text = "Ari Valencia"
                         registered.visibility = View.VISIBLE
@@ -56,7 +62,6 @@ class HomeFragment: Fragment() {
                     }
                 }
             }
-
         }
 
         save.setOnClickListener {

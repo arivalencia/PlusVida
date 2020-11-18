@@ -41,10 +41,10 @@ class MainActivity: AppCompatActivity() {
         }
         bottom_navigation.selectedItemId = R.id.home
 
-        val analytics = FirebaseAnalytics.getInstance(this)
+        /*val analytics = FirebaseAnalytics.getInstance(this)
         val data = Bundle()
         data.putString("Message", "run")
-        analytics.logEvent("InitAPP", data )
+        analytics.logEvent("InitAPP", data )*/
 
     }
 

@@ -1,4 +1,22 @@
 <resources>
     <string name="app_name">+Vida</string>
     <string name="preferences_user">com.life.pluslife.preferences_user</string>
+
+    <string-array name="sex">
+        <item>Seleccionar…</item>
+        <item>Mujer</item>
+        <item>Hombre</item>
+    </string-array>
+
+    <string-array name="blood_types">
+        <item>Seleccionar…</item>
+        <item>O+</item>
+        <item>O-</item>
+        <item>A+</item>
+        <item>A-</item>
+        <item>B+</item>
+        <item>B-</item>
+        <item>AB+</item>
+        <item>AB-</item>
+    </string-array>
 </resources>

@@ -40,10 +40,10 @@
                 android:orientation="vertical"
                 android:visibility="gone">
 
-                <TextView
+                <!--TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Ya ingrese mis datos"/>
+                    android:text="Ya ingrese mis datos"/ -->
 
                 <!-- aqui va la info cuando el usuario ya ingreso sus datos -->
 

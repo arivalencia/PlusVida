@@ -24,7 +24,7 @@ class HomeFragment: Fragment() {
 
     //private val localHelper = LocalHelper(context!!)
     private val db = FirebaseFirestore.getInstance()
-    private var birthDate: String? = null
+    private var birthDate: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -87,8 +87,26 @@ class HomeFragment: Fragment() {
 
         save.setOnClickListener {
             if ( validateData() ) {
-                /*val personalInformation = PersonalInformation("Ari", "Valencia", "Delgado", "Hombre", "15/08/1999")
-                val userData = UserData(personalInformation)
+                val personalInformation = PersonalInformation(
+                    name.text.toString(),
+                    mother_last_name.text.toString(),
+                    father_last_name.text.toString(),
+                    spinner_sex.selectedItem.toString(),
+                    birthDate,
+                    weight.text.toString().toInt(),
+                    height.text.toString().toDouble(),
+                    spinner_blood_types.selectedItem.toString()
+                )
+
+                val toxicHabits = ToxicHabits(
+                    spinner_alcohol.selectedItem.toString(),
+                    spinner_tobacco.selectedItem.toString(),
+                    spinner_drugs.selectedItem.toString()
+                )
+
+                Log.e("PERSONAL INFORMATION", personalInformation.toString())
+                Log.e("TOXIC HABITS", toxicHabits.toString())
+                /*val userData = UserData(personalInformation)
                 val jsonData = Gson().toJson(userData)
 
                 user.data = userData
@@ -123,15 +141,46 @@ class HomeFragment: Fragment() {
             boolean = false
         }
 
-        if ( switchSex.selectedItemPosition == 0 ){
+        if ( weight.text.toString().isEmpty() ){
+            weight.error = "Ingrese su peso"
+            boolean = false
+        }
+
+        if ( height.text.toString().isEmpty() ){
+            height.error = "Ingrese su altura"
+            boolean = false
+        }
+
+        if ( spinner_sex.selectedItemPosition == 0 ){
             Toast.makeText( requireContext(), "Seleccione un sexo", Toast.LENGTH_SHORT ).show()
             boolean = false
         }
 
-        if ( birthDate == null){
+        if ( spinner_blood_types.selectedItemPosition == 0 ) {
+            Toast.makeText( requireContext(), "Seleccione su tipo de sangre", Toast.LENGTH_SHORT ).show()
+            boolean = false
+        }
+
+        if ( spinner_alcohol.selectedItemPosition == 0 ) {
+            Toast.makeText( requireContext(), "Selecciona tu consumo de alcohol", Toast.LENGTH_SHORT).show()
+            boolean = false
+        }
+
+        if ( spinner_tobacco.selectedItemPosition == 0 ) {
+            Toast.makeText( requireContext(), "Selecciona tu consumo de tabaco", Toast.LENGTH_SHORT).show()
+            boolean = false
+        }
+
+        if ( spinner_drugs.selectedItemPosition == 0 ) {
+            Toast.makeText( requireContext(), "Selecciona tu consumo de drogas", Toast.LENGTH_SHORT).show()
+            boolean = false
+        }
+
+        if ( birthDate == ""){
             Toast.makeText( requireContext(), "Introduzca su fecha de nacimiento", Toast.LENGTH_SHORT ).show()
             boolean = false
         }
+
 
 
         return boolean

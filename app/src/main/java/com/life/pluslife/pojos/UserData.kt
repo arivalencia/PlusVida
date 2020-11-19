@@ -6,7 +6,9 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class UserData(
-    var personalInformation: PersonalInformation
+    var personalInformation: PersonalInformation,
+    var toxicHabits: ToxicHabits,
+    var diseases: Diseases
 ): Parcelable
 
 @Parcelize
@@ -16,7 +18,7 @@ data class PersonalInformation(
     var fatherLastName: String,
     var sex: String,
     var birthDate: String,
-    var weight: Double,
+    var weight: Int,
     var height: Double,
     var bloodType: String
 ): Parcelable
@@ -25,8 +27,7 @@ data class PersonalInformation(
 data class ToxicHabits(
     var alcohol: String,
     var tobacco: String,
-    var drugs: String,
-    var infusions: String
+    var drugs: String
 ): Parcelable
 
 @Parcelize

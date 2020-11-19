@@ -2,6 +2,10 @@
     <string name="app_name">+Vida</string>
     <string name="preferences_user">com.life.pluslife.preferences_user</string>
 
+    <string name="personal_information">Datos personales</string>
+    <string name="toxic_habits">Habitos toxicos</string>
+    <string name="diseases">Enfermedades</string>
+
     <string-array name="sex">
         <item>Seleccionar…</item>
         <item>Mujer</item>
@@ -18,5 +22,13 @@
         <item>B-</item>
         <item>AB+</item>
         <item>AB-</item>
+    </string-array>
+    
+    <string-array name="general_options">
+        <item>Seleccionar…</item>
+        <item>Nunca</item>
+        <item>Ocasionalmente</item>
+        <item>Generalmente</item>
+        <item>Simpre</item>
     </string-array>
 </resources>

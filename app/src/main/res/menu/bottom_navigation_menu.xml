@@ -11,12 +11,12 @@
         android:id="@+id/help"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_report_problem_24"
-        android:title="Ayudar"/>
+        android:title="Ayuda"/>
 
     <item
         android:id="@+id/options"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_more_horiz_24"
-        android:title="Opciones"/>
+        android:title="Más"/>
 
 </menu>

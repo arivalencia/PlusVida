@@ -264,6 +264,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/respiratory"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -302,6 +303,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/gastrointestinal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -340,12 +342,13 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/nephrourological"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:textSize="16sp"
-            android:text="Nefrourológicos"/>
+            android:text="Nefrourológicas"/>
 
         <RadioGroup
             android:id="@+id/rg_nephrourological"
@@ -378,12 +381,13 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/neurological"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:textSize="16sp"
-            android:text="Neurológicos"/>
+            android:text="Neurológicas"/>
 
         <RadioGroup
             android:id="@+id/rg_neurological"
@@ -416,12 +420,13 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/hematological"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:textSize="16sp"
-            android:text="Hematológicos"/>
+            android:text="Hematológicas"/>
 
         <RadioGroup
             android:id="@+id/rg_hematological"
@@ -454,12 +459,13 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/gynecological"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:textSize="16sp"
-            android:text="Ginecológicos"/>
+            android:text="Ginecológicas"/>
 
         <RadioGroup
             android:id="@+id/rg_gynecological"
@@ -492,6 +498,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/infectious"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -530,12 +537,13 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/endocrinological"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:textSize="16sp"
-            android:text="Endocrinologicos"/>
+            android:text="Endocrinologicas"/>
 
         <RadioGroup
             android:id="@+id/rg_endocrinological"
@@ -568,6 +576,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/surgical"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -606,6 +615,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/traumatic"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -644,6 +654,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/allergic"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"

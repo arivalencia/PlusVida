@@ -21,7 +21,11 @@ data class PersonalInformation(
     var weight: Int,
     var height: Double,
     var bloodType: String
-): Parcelable
+): Parcelable {
+    fun getFullName(): String {
+        return "$name $motherLastName $fatherLastName"
+    }
+}
 
 @Parcelize
 data class ToxicHabits(

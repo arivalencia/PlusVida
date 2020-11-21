@@ -96,54 +96,49 @@ class ScanQRActivity : AppCompatActivity() {
 
                 if (barcodes.size() > 0) {
 
-                    // obtenemos el token
+                    // Get token
                     token = barcodes.valueAt(0).displayValue.toString()
 
                     // verificamos que el token anterior no se igual al actual
                     // esto es util para evitar multiples llamadas empleando el mismo token
                     if (token != tokenanterior) {
 
-                        // guardamos el ultimo token proceado
+                        // Save last token
                         tokenanterior = token
                         Log.e("TOKEN", token)
 
                         if (URLUtil.isValidUrl(token)) {
-                            // si es una URL valida abre el navegador
+                            // Open browser
                             startActivity( Intent(Intent.ACTION_VIEW, Uri.parse(token)) )
-                            finish()
-                        }
-                        /*else {
-                            // comparte en otras apps
+                        } else {
+                            // Share other apps of text
                             val shareIntent = Intent()
                             shareIntent.action = Intent.ACTION_SEND
                             shareIntent.putExtra(Intent.EXTRA_TEXT, token)
                             shareIntent.type = "text/plain"
                             startActivity(shareIntent)
-                        }*/
+                        }
 
-                        /*Thread(object : Runnable {
+                        Thread(object : Runnable {
                             override fun run() {
-                                try {
-                                    Log.e("WAIT", "-----------")
-                                    //synchronized(this) {
-                                        //wait(5000)
-                                        // limpiamos el token
+                                    synchronized(this) {
+                                        Thread.sleep(5000)
+                                        // Clean token
                                         tokenanterior = ""
-                                    //}
-                                } catch (e: InterruptedException) {
-                                    // TODO Auto-generated catch block
-                                    Log.e("Error", "Waiting didnt work!!")
-                                    e.printStackTrace()
-                                }
-
+                                    }
                             }
-                        }).start()*/
+                        }).start()
 
                     }
                 }
             }
         })
 
+    }
+
+    override fun onStop() {
+        super.onStop()
+        finish()
     }
 
 }

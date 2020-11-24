@@ -5,6 +5,7 @@
     <string name="personal_information">Datos personales</string>
     <string name="toxic_habits">Habitos toxicos</string>
     <string name="diseases">Enfermedades</string>
+    <string name="emergency_contacts">Contactos de emergencia</string>
 
     <string-array name="sex">
         <item>Seleccionar…</item>

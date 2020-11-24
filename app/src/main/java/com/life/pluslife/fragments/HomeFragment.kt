@@ -12,13 +12,11 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
 import com.life.pluslife.R
 import com.life.pluslife.helpers.LocalHelper
-import com.life.pluslife.pojos.Diseases
-import com.life.pluslife.pojos.PersonalInformation
-import com.life.pluslife.pojos.ToxicHabits
-import com.life.pluslife.pojos.UserData
+import com.life.pluslife.pojos.*
 import kotlinx.android.synthetic.main.component_form.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class HomeFragment: Fragment() {
@@ -105,18 +103,6 @@ class HomeFragment: Fragment() {
                     spinner_drugs.selectedItem.toString()
                 )
 
-                /*var respiratory =  if ( rb_respiratory_true.isChecked ) "Si" else "No"
-                var gastrointestinal = if ( rb_gastrointestinal_true.isChecked ) "Si" else "No"
-                var nephrourological = if ( rb_nephrourological_true.isChecked ) "Si" else "No"
-                var neurological = if ( rb_neurological_true.isChecked ) "Si" else "No"
-                var hematological = if ( rb_hematological_true.isChecked ) "Si" else "No"
-                var gynecological = if ( rb_gynecological_true.isChecked ) "Si" else "No"
-                var infectious = if ( rb_infectious_true.isChecked ) "Si" else "No"
-                var endocrinological = if ( rb_endocrinological_true.isChecked ) "Si" else "No"
-                var surgical = if ( rb_surgical_true.isChecked ) "Si" else "No"
-                var traumatic = if ( rb_traumatic_true.isChecked ) "Si" else "No"
-                var allergic = if ( rb_allergic_true.isChecked ) "Si" else "No"*/
-
                 val diseases = Diseases(
                     if ( rb_respiratory_true.isChecked )      "Si" else "No",
                     if ( rb_gastrointestinal_true.isChecked ) "Si" else "No",
@@ -131,18 +117,39 @@ class HomeFragment: Fragment() {
                     if ( rb_allergic_true.isChecked )         "Si" else "No"
                 )
 
-                val userData = UserData(personalInformation, toxicHabits, diseases)
-                val jsonData = Gson().toJson(userData)
+                val contactOne = EmergencyContact(
+                    name_contact_one.text.toString(),
+                    phone_number_contact_one.text.toString()
+                )
+                val contactTwo = EmergencyContact(
+                    name_contact_two.text.toString(),
+                    phone_number_contact_two.text.toString()
+                )
 
-                user.data = userData
-                context?.let { it1 -> LocalHelper(it1).setUser(user) }
+                val arrayContacts = ArrayList<EmergencyContact>()
+                arrayContacts.add( contactOne )
+                arrayContacts.add( contactTwo )
+
+                val userData = UserData(personalInformation, arrayContacts, toxicHabits, diseases)
+                val jsonData = Gson().toJson(userData)
 
                 if ( user.email!!.isNotEmpty() ){
                     db.collection("users").document(user.email!!).set(
                         hashMapOf(
                             "data" to jsonData
                         )
-                    )
+                    ).addOnCompleteListener {
+                        if ( it.isSuccessful ){
+                            user.data = userData
+                            context?.let { it1 -> LocalHelper(it1).setUser(user) }
+
+                            Toast.makeText(context, "Datos guardados", Toast.LENGTH_SHORT).show()
+
+                            title.text = "Hola ${user.data!!.personalInformation.name}"
+                            registered.visibility = View.VISIBLE
+                            form.visibility = View.GONE
+                        }
+                    }
                 }
             }
         }
@@ -192,6 +199,26 @@ class HomeFragment: Fragment() {
 
         if ( birthDate == ""){
             Toast.makeText( requireContext(), "Introduzca su fecha de nacimiento", Toast.LENGTH_SHORT ).show()
+            boolean = false
+        }
+
+        if ( name_contact_one.text.toString().isEmpty() ){
+            name_contact_one.error = ""
+            boolean = false
+        }
+
+        if ( phone_number_contact_one.text.toString().isEmpty() ){
+            phone_number_contact_one.error = ""
+            boolean = false
+        }
+
+        if ( name_contact_two.text.toString().isEmpty() ){
+            name_contact_two.error = ""
+            boolean = false
+        }
+
+        if ( phone_number_contact_two.text.toString().isEmpty() ){
+            phone_number_contact_two.error = ""
             boolean = false
         }
 

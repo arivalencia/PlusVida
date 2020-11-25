@@ -1,6 +1,8 @@
 package com.life.pluslife.fragments
 
 import android.app.DatePickerDialog
+import android.graphics.Bitmap
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +12,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.MultiFormatWriter
+import com.google.zxing.WriterException
+import com.life.pluslife.Constants
 import com.life.pluslife.R
 import com.life.pluslife.helpers.LocalHelper
 import com.life.pluslife.pojos.*
@@ -22,6 +28,7 @@ import kotlin.collections.ArrayList
 class HomeFragment: Fragment() {
 
     //private val localHelper = LocalHelper(context!!)
+    private val TAG: String = "HomeFragment"
     private val db = FirebaseFirestore.getInstance()
     private var birthDate: String = ""
 
@@ -43,28 +50,25 @@ class HomeFragment: Fragment() {
         if (user?.email?.isNotEmpty()!!){
             if ( user.data != null){
 
-                title.text = "Hola ${user.data!!.personalInformation.name}"
-                registered.visibility = View.VISIBLE
-                form.visibility = View.GONE
+                hideForm(user)
 
             } else {
-                db.collection("users").document(user.email!!).get().addOnSuccessListener {
-                    if ( it.exists() ){
+                db.collection("users").document(user.email!!).get()
+                    .addOnSuccessListener {
+                        if ( it.exists() ){
 
-                        user.data = Gson().fromJson<UserData>(it["data"].toString(), UserData::class.java)
-                        Log.e("USER--", user.toString())
-                        context?.let { it1 -> LocalHelper(it1).setUser(user) }
+                            user.data = Gson().fromJson<UserData>(it["data"].toString(), UserData::class.java)
+                            Log.e("USER--", user.toString())
+                            context?.let { it1 -> LocalHelper(it1).setUser(user) }
 
-                        title.text = "Hola ${user.data!!.personalInformation.name}"
-                        registered.visibility = View.VISIBLE
-                        form.visibility = View.GONE
+                            hideForm(user)
 
-                    } else {
-                        title.text = "Ingresar mis datos de ayuda"
-                        registered.visibility = View.GONE
-                        form.visibility = View.VISIBLE
+                        } else {
+                            title.text = "Ingresar mis datos de ayuda"
+                            registered.visibility = View.GONE
+                            form.visibility = View.VISIBLE
+                        }
                     }
-                }
             }
         }
 
@@ -145,9 +149,7 @@ class HomeFragment: Fragment() {
 
                             Toast.makeText(context, "Datos guardados", Toast.LENGTH_SHORT).show()
 
-                            title.text = "Hola ${user.data!!.personalInformation.name}"
-                            registered.visibility = View.VISIBLE
-                            form.visibility = View.GONE
+                            hideForm(user)
                         }
                     }
                 }
@@ -158,6 +160,14 @@ class HomeFragment: Fragment() {
         user.data = null
         LocalHelper( requireContext() ).setUser(user)*/
     }
+
+    private fun hideForm(user: User){
+        title.text = "Hola ${user.data!!.personalInformation.name}"
+        registered.visibility = View.VISIBLE
+        form.visibility = View.GONE
+    }
+
+
 
     private fun validateData(): Boolean {
         var boolean = true

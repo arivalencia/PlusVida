@@ -14,7 +14,6 @@ class SplashActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Log.e("Splash", "inside")
         val localHelper = LocalHelper(this)
 
         if ( localHelper.getUser() != null ){
@@ -27,7 +26,6 @@ class SplashActivity: AppCompatActivity() {
             startActivity( Intent(this, AuthActivity::class.java) )
         }
 
-        Log.e("Splash", "finish")
         finish()
 
     }

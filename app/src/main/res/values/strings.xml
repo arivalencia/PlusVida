@@ -6,11 +6,17 @@
     <string name="toxic_habits">Habitos toxicos</string>
     <string name="diseases">Enfermedades</string>
     <string name="emergency_contacts">Contactos de emergencia</string>
+    <string name="recomendations">
+        En caso de accidente pide que escaneen tu codigo QR para
+        que puedan acceder a tu historial clínico.
+        Tambien te recomendamos imprimir tu codigo en una tarjeta
+        y llevarla contigo siempre, puedes ponerla en tu billetera.
+    </string>
 
     <string-array name="sex">
         <item>Seleccionar…</item>
-        <item>Mujer</item>
-        <item>Hombre</item>
+        <item>Femenino</item>
+        <item>Masculino</item>
     </string-array>
 
     <string-array name="blood_types">
@@ -30,6 +36,7 @@
         <item>Nunca</item>
         <item>Ocasionalmente</item>
         <item>Generalmente</item>
-        <item>Simpre</item>
+        <item>Siempre</item>
     </string-array>
+
 </resources>

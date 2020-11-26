@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Switch
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.firestore.FirebaseFirestore
@@ -46,7 +47,6 @@ class HomeFragment: Fragment() {
         val user = context?.let { LocalHelper(it).getUser() }
         Log.e("USER", user.toString())
 
-
         if (user?.email?.isNotEmpty()!!){
             if ( user.data != null){
 
@@ -64,9 +64,7 @@ class HomeFragment: Fragment() {
                             hideForm(user)
 
                         } else {
-                            title.text = "Ingresar mis datos de ayuda"
-                            registered.visibility = View.GONE
-                            form.visibility = View.VISIBLE
+                            showForm()
                         }
                     }
             }
@@ -156,6 +154,67 @@ class HomeFragment: Fragment() {
             }
         }
 
+        btn_edit_data.setOnClickListener {
+            showForm()
+
+            val userData = user.data
+
+            if ( user.data != null ) {
+                val personalI: PersonalInformation = userData?.personalInformation!!
+                val emergencyC: ArrayList<EmergencyContact> = ArrayList(userData.emergencyContacts)
+                val toxicHabits: ToxicHabits = userData.toxicHabits
+                val diseases: Diseases = userData.diseases
+
+                name.setText( personalI.name )
+                mother_last_name.setText( personalI.motherLastName )
+                father_last_name.setText( personalI.fatherLastName )
+                weight.setText( personalI.weight.toString() )
+                height.setText( personalI.height.toString() )
+                birth_date.setText( personalI.birthDate )
+
+                spinner_sex.setSelection( if (personalI.sex.equals("Femenino")) 1 else 2 )
+
+                when ( personalI.bloodType ) {
+                    "O+" -> spinner_blood_types.setSelection(1)
+                    "O-" -> spinner_blood_types.setSelection(2)
+                    "A+" -> spinner_blood_types.setSelection(3)
+                    "A-" -> spinner_blood_types.setSelection(4)
+                    "B+" -> spinner_blood_types.setSelection(5)
+                    "B-" -> spinner_blood_types.setSelection(6)
+                    "AB+" -> spinner_blood_types.setSelection(7)
+                    "AB-" -> spinner_blood_types.setSelection(8)
+                }
+
+                when ( toxicHabits.alcohol ) {
+                    "Nunca" -> spinner_alcohol.setSelection(1)
+                    "Ocasionalmente" -> spinner_alcohol.setSelection(2)
+                    "Generalmente" -> spinner_alcohol.setSelection(3)
+                    "Siempre" -> spinner_alcohol.setSelection(4)
+                }
+
+                when ( toxicHabits.tobacco ) {
+                    "Nunca" -> spinner_tobacco.setSelection(1)
+                    "Ocasionalmente" -> spinner_tobacco.setSelection(2)
+                    "Generalmente" -> spinner_tobacco.setSelection(3)
+                    "Siempre" -> spinner_tobacco.setSelection(4)
+                }
+
+                when ( toxicHabits.drugs ) {
+                    "Nunca" -> spinner_drugs.setSelection(1)
+                    "Ocasionalmente" -> spinner_drugs.setSelection(2)
+                    "Generalmente" -> spinner_drugs.setSelection(3)
+                    "Siempre" -> spinner_drugs.setSelection(4)
+                }
+
+                name_contact_one.setText( emergencyC[0].name)
+                phone_number_contact_one.setText( emergencyC[0].phoneNumber)
+                name_contact_two.setText( emergencyC[1].name)
+                phone_number_contact_two.setText( emergencyC[1].phoneNumber)
+
+            }
+
+        }
+
         /*db.collection("users").document(user.email!!).delete()
         user.data = null
         LocalHelper( requireContext() ).setUser(user)*/
@@ -167,7 +226,11 @@ class HomeFragment: Fragment() {
         form.visibility = View.GONE
     }
 
-
+    private fun showForm() {
+        title.text = "Ingresar mis datos de ayuda"
+        registered.visibility = View.GONE
+        form.visibility = View.VISIBLE
+    }
 
     private fun validateData(): Boolean {
         var boolean = true

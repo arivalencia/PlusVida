@@ -13,12 +13,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:gravity="center"
             android:layout_weight="1"
             android:padding="15dp"
             android:background="@color/black">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:textColor="@color/white"
                     android:textSize="24sp"
                     android:text="Enfoca el codigo QR a escanear"/>

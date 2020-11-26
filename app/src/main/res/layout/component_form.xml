@@ -7,7 +7,7 @@
     android:paddingEnd="15dp"
     android:paddingStart="15dp"
     android:orientation="vertical"
-    android:visibility="visible">
+    android:visibility="gone">
 
     <!--
     PERSONAL INFORMATION

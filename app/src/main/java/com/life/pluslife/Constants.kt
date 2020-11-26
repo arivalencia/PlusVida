@@ -1,13 +1,11 @@
 package com.life.pluslife
 
-import android.content.Context
-import androidx.appcompat.app.AlertDialog
-
 class Constants {
 
     companion object {
 
-        val BASE_URL: String = "http://192.168.0.8:3000/users/"
+        //https://plusvida-2k20.web.app/users/
+        val BASE_URL: String = "https://plusvida-2k20.web.app/users/"
         val GOOGLE_SIGN_IN = 5
 
     }

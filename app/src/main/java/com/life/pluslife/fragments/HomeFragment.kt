@@ -3,6 +3,7 @@ package com.life.pluslife.fragments
 import android.app.DatePickerDialog
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -22,6 +23,7 @@ import com.life.pluslife.helpers.LocalHelper
 import com.life.pluslife.pojos.*
 import kotlinx.android.synthetic.main.component_form.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -70,20 +72,17 @@ class HomeFragment: Fragment() {
             }
         }
 
-        calendar.setOnClickListener {
+        birth_date.setOnClickListener {
             val calendar = Calendar.getInstance()
-            val year = calendar.get(Calendar.YEAR)
-            val month = calendar.get(Calendar.MONTH)
-            val day = calendar.get(Calendar.DAY_OF_MONTH)
             val dialogDate = DatePickerDialog(
                 requireContext(),
                 DatePickerDialog.OnDateSetListener { datePicker, i, i2, i3 ->
                     birthDate = "$i3/$i2/$i"
                     birth_date.text = "$i3/${i2+1}/$i"
                 },
-                year,
-                month,
-                day
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
             ).show()
         }
 
@@ -155,8 +154,8 @@ class HomeFragment: Fragment() {
         }
 
         btn_edit_data.setOnClickListener {
-            showForm()
 
+            showForm()
             val userData = user.data
 
             if ( user.data != null ) {
@@ -170,7 +169,20 @@ class HomeFragment: Fragment() {
                 father_last_name.setText( personalI.fatherLastName )
                 weight.setText( personalI.weight.toString() )
                 height.setText( personalI.height.toString() )
-                birth_date.setText( personalI.birthDate )
+
+
+                birthDate = personalI.birthDate
+                val index = personalI.birthDate.indexOf("/") + 1
+                val lastIndex = personalI.birthDate.lastIndexOf("/")
+                val month = personalI.birthDate.substring(index, lastIndex).toInt() + 1
+                val date =  personalI.birthDate.replaceRange(index, lastIndex, month.toString())
+
+                birth_date.setText( date )
+
+                name_contact_one.setText( emergencyC[0].name)
+                phone_number_contact_one.setText( emergencyC[0].phoneNumber)
+                name_contact_two.setText( emergencyC[1].name)
+                phone_number_contact_two.setText( emergencyC[1].phoneNumber)
 
                 spinner_sex.setSelection( if (personalI.sex.equals("Femenino")) 1 else 2 )
 
@@ -206,10 +218,71 @@ class HomeFragment: Fragment() {
                     "Siempre" -> spinner_drugs.setSelection(4)
                 }
 
-                name_contact_one.setText( emergencyC[0].name)
-                phone_number_contact_one.setText( emergencyC[0].phoneNumber)
-                name_contact_two.setText( emergencyC[1].name)
-                phone_number_contact_two.setText( emergencyC[1].phoneNumber)
+                if ( diseases.respiratory.equals("Si") ) {
+                    rb_respiratory_true.isChecked = true
+                } else {
+                    rb_respiratory_false.isChecked = true
+                }
+
+                if ( diseases.gastrointestinal.equals("Si") ) {
+                    rb_gastrointestinal_true.isChecked = true
+                } else {
+                    rb_gastrointestinal_false.isChecked = true
+                }
+
+                if ( diseases.nephrourological.equals("Si") ) {
+                    rb_nephrourological_true.isChecked = true
+                } else {
+                    rb_nephrourological_false.isChecked = true
+                }
+
+                if ( diseases.neurological.equals("Si") ) {
+                    rb_neurological_true.isChecked = true
+                } else {
+                    rb_neurological_false.isChecked = true
+                }
+
+                if ( diseases.hematological.equals("Si") ) {
+                    rb_hematological_true.isChecked = true
+                } else {
+                    rb_hematological_false.isChecked = true
+                }
+
+                if ( diseases.gynecological.equals("Si") ) {
+                    rb_gynecological_true.isChecked = true
+                } else {
+                    rb_gynecological_false.isChecked = true
+                }
+
+                if ( diseases.infectious.equals("Si") ) {
+                    rb_infectious_true.isChecked = true
+                } else {
+                    rb_infectious_false.isChecked = true
+                }
+
+                if ( diseases.endocrinological.equals("Si") ) {
+                    rb_endocrinological_true.isChecked = true
+                } else {
+                    rb_endocrinological_false.isChecked = true
+                }
+
+                if ( diseases.surgical.equals("Si") ) {
+                    rb_surgical_true.isChecked = true
+                } else {
+                    rb_surgical_false.isChecked = true
+                }
+
+                if ( diseases.traumatic.equals("Si") ) {
+                    rb_traumatic_true.isChecked = true
+                } else {
+                    rb_traumatic_false.isChecked = true
+                }
+
+                if ( diseases.allergic.equals("Si") ) {
+                    rb_allergic_true.isChecked = true
+                } else {
+                    rb_allergic_false.isChecked = true
+                }
 
             }
 

@@ -43,7 +43,7 @@ class HelpFragment: Fragment() {
 
         if ( user != null ){
             if ( user.data != null ){
-                qr_code.setImageBitmap( generateQRCode( "edaxgmtzbk@gmail.com" ))
+                qr_code.setImageBitmap( generateQRCode( user.email ))
 
                 qr_code.setOnClickListener {
                     val intentBrowser = Intent(Intent.ACTION_VIEW)

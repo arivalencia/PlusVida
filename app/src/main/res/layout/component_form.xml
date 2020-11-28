@@ -7,7 +7,7 @@
     android:paddingEnd="15dp"
     android:paddingStart="15dp"
     android:orientation="vertical"
-    android:visibility="visible">
+    android:visibility="gone">
 
     <!--
     PERSONAL INFORMATION
@@ -302,6 +302,79 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <!--
+    ALLERGIES
+    -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:text="@string/allergies"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="3dp"
+        android:background="@color/colorPrimaryDark">
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/allergies"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:text="¿Tiénes algun tipo de alergia?"/>
+
+        <RadioGroup
+            android:id="@+id/rg_allergies"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/rb_allergies_true"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="start"
+                android:text="Si"/>
+            <RadioButton
+                android:id="@+id/rb_allergies_false"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="end"
+                android:text="No"/>
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/container_input_allergies"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:visibility="gone"
+        android:textColorHint="@android:color/darker_gray">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_allergies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Explica a qué eres alerico(a)"
+            android:background="@drawable/background_gray_radius"
+            android:padding="5dp"
+            android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <!--
     TOXIC HABITS
@@ -760,45 +833,6 @@
                 android:text="Si"/>
             <RadioButton
                 android:id="@+id/rb_traumatic_false"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="end"
-                android:text="No"/>
-        </RadioGroup>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/allergic"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:textSize="16sp"
-            android:text="Alergicas"/>
-
-        <RadioGroup
-            android:id="@+id/rg_allergic"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-            <RadioButton
-                android:id="@+id/rb_allergic_true"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="start"
-                android:text="Si"/>
-            <RadioButton
-                android:id="@+id/rb_allergic_false"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

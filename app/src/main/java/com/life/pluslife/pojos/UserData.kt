@@ -1,6 +1,5 @@
 package com.life.pluslife.pojos
 
-import android.os.Parcel
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
@@ -8,6 +7,7 @@ import kotlinx.android.parcel.Parcelize
 data class UserData(
     var personalInformation: PersonalInformation,
     var emergencyContacts: ArrayList<EmergencyContact>,
+    var allergies: String,
     var toxicHabits: ToxicHabits,
     var diseases: Diseases
 ): Parcelable
@@ -53,6 +53,5 @@ data class Diseases(
     var infectious: String,
     var endocrinological: String,
     var surgical: String,
-    var traumatic: String,
-    var allergic: String
+    var traumatic: String
 ): Parcelable

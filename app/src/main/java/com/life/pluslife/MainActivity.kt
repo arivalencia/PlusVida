@@ -40,6 +40,7 @@ class MainActivity: AppCompatActivity() {
             }
         }
         bottom_navigation.selectedItemId = R.id.home
+        bottom_navigation.selectedItemId = R.id.help
 
         /*val analytics = FirebaseAnalytics.getInstance(this)
         val data = Bundle()
@@ -57,9 +58,7 @@ class MainActivity: AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-
         if ( homeFragment.isVisible ) { finish() }
         else { super.onBackPressed() }
-
     }
 }

@@ -1,36 +1,25 @@
 package com.life.pluslife.fragments
 
 import android.app.DatePickerDialog
-import android.graphics.Bitmap
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Switch
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
-import com.google.zxing.BarcodeFormat
-import com.google.zxing.MultiFormatWriter
-import com.google.zxing.WriterException
-import com.life.pluslife.Constants
 import com.life.pluslife.R
 import com.life.pluslife.helpers.LocalHelper
 import com.life.pluslife.pojos.*
 import kotlinx.android.synthetic.main.component_form.*
 import kotlinx.android.synthetic.main.fragment_home.*
-import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-
 class HomeFragment: Fragment() {
 
-    //private val localHelper = LocalHelper(context!!)
     private val TAG: String = "HomeFragment"
     private val db = FirebaseFirestore.getInstance()
     private var birthDate: String = ""
@@ -51,9 +40,7 @@ class HomeFragment: Fragment() {
 
         if (user?.email?.isNotEmpty()!!){
             if ( user.data != null){
-
                 hideForm(user)
-
             } else {
                 db.collection("users").document(user.email!!).get()
                     .addOnSuccessListener {
@@ -74,7 +61,7 @@ class HomeFragment: Fragment() {
 
         birth_date.setOnClickListener {
             val calendar = Calendar.getInstance()
-            val dialogDate = DatePickerDialog(
+            DatePickerDialog(
                 requireContext(),
                 DatePickerDialog.OnDateSetListener { datePicker, i, i2, i3 ->
                     birthDate = "$i3/$i2/$i"
@@ -98,6 +85,12 @@ class HomeFragment: Fragment() {
                     height.text.toString().toDouble(),
                     spinner_blood_types.selectedItem.toString()
                 )
+
+                var allergies: String = ""
+                if ( rb_allergies_true.isChecked ) {
+                    allergies = input_allergies.text.toString()
+                }
+
                 val toxicHabits = ToxicHabits(
                     spinner_alcohol.selectedItem.toString(),
                     spinner_tobacco.selectedItem.toString(),
@@ -114,8 +107,7 @@ class HomeFragment: Fragment() {
                     if ( rb_infectious_true.isChecked )       "Si" else "No",
                     if ( rb_endocrinological_true.isChecked ) "Si" else "No",
                     if ( rb_surgical_true.isChecked )         "Si" else "No",
-                    if ( rb_traumatic_true.isChecked )        "Si" else "No",
-                    if ( rb_allergic_true.isChecked )         "Si" else "No"
+                    if ( rb_traumatic_true.isChecked )        "Si" else "No"
                 )
 
                 val contactOne = EmergencyContact(
@@ -131,7 +123,7 @@ class HomeFragment: Fragment() {
                 arrayContacts.add( contactOne )
                 arrayContacts.add( contactTwo )
 
-                val userData = UserData(personalInformation, arrayContacts, toxicHabits, diseases)
+                val userData = UserData(personalInformation, arrayContacts, allergies, toxicHabits, diseases)
                 val jsonData = Gson().toJson(userData)
 
                 if ( user.email!!.isNotEmpty() ){
@@ -145,7 +137,6 @@ class HomeFragment: Fragment() {
                             context?.let { it1 -> LocalHelper(it1).setUser(user) }
 
                             Toast.makeText(context, "Datos guardados", Toast.LENGTH_SHORT).show()
-
                             hideForm(user)
                         }
                     }
@@ -161,6 +152,7 @@ class HomeFragment: Fragment() {
             if ( user.data != null ) {
                 val personalI: PersonalInformation = userData?.personalInformation!!
                 val emergencyC: ArrayList<EmergencyContact> = ArrayList(userData.emergencyContacts)
+                val allergies: String = userData.allergies
                 val toxicHabits: ToxicHabits = userData.toxicHabits
                 val diseases: Diseases = userData.diseases
 
@@ -169,7 +161,6 @@ class HomeFragment: Fragment() {
                 father_last_name.setText( personalI.fatherLastName )
                 weight.setText( personalI.weight.toString() )
                 height.setText( personalI.height.toString() )
-
 
                 birthDate = personalI.birthDate
                 val index = personalI.birthDate.indexOf("/") + 1
@@ -183,6 +174,14 @@ class HomeFragment: Fragment() {
                 phone_number_contact_one.setText( emergencyC[0].phoneNumber)
                 name_contact_two.setText( emergencyC[1].name)
                 phone_number_contact_two.setText( emergencyC[1].phoneNumber)
+
+                if ( allergies.isEmpty() ) {
+                    rb_allergies_false.isChecked = true
+                } else {
+                    rb_allergies_true.isChecked = true
+                    input_allergies.setText( allergies )
+                    container_input_allergies.visibility = View.VISIBLE
+                }
 
                 spinner_sex.setSelection( if (personalI.sex.equals("Femenino")) 1 else 2 )
 
@@ -278,14 +277,16 @@ class HomeFragment: Fragment() {
                     rb_traumatic_false.isChecked = true
                 }
 
-                if ( diseases.allergic.equals("Si") ) {
-                    rb_allergic_true.isChecked = true
-                } else {
-                    rb_allergic_false.isChecked = true
-                }
-
             }
 
+        }
+
+        rb_allergies_false.setOnClickListener {
+            container_input_allergies.visibility = View.GONE
+        }
+
+        rb_allergies_true.setOnClickListener {
+            container_input_allergies.visibility = View.VISIBLE
         }
 
         /*db.collection("users").document(user.email!!).delete()
@@ -368,6 +369,18 @@ class HomeFragment: Fragment() {
             boolean = false
         }
 
+        if ( rg_allergies.checkedRadioButtonId == -1 ){
+            allergies.error = ""
+            boolean = false
+        } else {
+            if ( rb_allergies_true.isChecked ){
+                if ( input_allergies.text.toString().isEmpty() ){
+                    input_allergies.error = "Introduce a que eres alergico(a)"
+                    boolean = false
+                }
+            }
+        }
+
         if ( spinner_alcohol.selectedItemPosition == 0 ) {
             Toast.makeText( requireContext(), "Selecciona tu consumo de alcohol", Toast.LENGTH_SHORT).show()
             boolean = false
@@ -430,11 +443,6 @@ class HomeFragment: Fragment() {
 
         if ( rg_traumatic.checkedRadioButtonId == -1 ){
             traumatic.error = ""
-            boolean = false
-        }
-
-        if ( rg_allergic.checkedRadioButtonId == -1 ){
-            allergic.error = ""
             boolean = false
         }
 

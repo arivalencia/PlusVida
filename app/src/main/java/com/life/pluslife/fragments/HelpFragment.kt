@@ -41,6 +41,14 @@ class HelpFragment: Fragment() {
             startActivity( Intent( context, ScanQRActivity::class.java) )
         }
 
+        call_emergence.setOnClickListener {
+            val callIntent = Intent(
+                Intent.ACTION_DIAL,
+                Uri.fromParts("tel", "911", null)
+            )
+            startActivity(callIntent);
+        }
+
         if ( user != null ){
             if ( user.data != null ){
                 qr_code.setImageBitmap( generateQRCode( user.email ))

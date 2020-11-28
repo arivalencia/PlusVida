@@ -67,6 +67,29 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/call_emergence"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            android:padding="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:textColor="@color/red"
+                android:textSize="16sp"
+                android:text="Llamar a emergencias"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_phone_24"
+                app:tint="@color/red" />
+        </LinearLayout>
+
     </RelativeLayout>
 
 </LinearLayout>

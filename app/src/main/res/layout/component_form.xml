@@ -9,848 +9,1045 @@
     android:orientation="vertical"
     android:visibility="gone">
 
-    <!--
-    PERSONAL INFORMATION
-    -->
-    <TextView
+    <!-- <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:text="@string/personal_information"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="3dp"
-        android:background="@color/colorPrimaryDark">
-    </LinearLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:textColorHint="@android:color/darker_gray">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nombre"
-            android:background="@drawable/background_gray_radius"
-            android:padding="5dp"
-            android:textColor="@color/black" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:textColorHint="@android:color/darker_gray">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/mother_last_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Apellido materno"
-            android:background="@drawable/background_gray_radius"
-            android:padding="5dp"
-            android:textColor="@color/black" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:textColorHint="@android:color/darker_gray">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/father_last_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Apellido paterno"
-            android:background="@drawable/background_gray_radius"
-            android:padding="5dp"
-            android:textColor="@color/black" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal">
-
+        android:layout_height="wrap_content">
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginEnd="5dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp">
+            < ___________________________________ -->
+            <!-- PERSONAL INFORMATION -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:text="@string/personal_information"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="3dp"
+                android:background="@color/colorPrimaryDark">
+            </LinearLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:textColorHint="@android:color/darker_gray">
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/weight"
+                    android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/background_gray_radius"
-                    android:hint="Peso"
-                    android:inputType="number"
-                    android:padding="5dp"
-                    android:textColor="@color/black" />
-            </com.google.android.material.textfield.TextInputLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginStart="5dp"
-            android:orientation="vertical">
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="@android:color/darker_gray">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/height"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:hint="Altura"
-                    android:background="@drawable/background_gray_radius"
-                    android:padding="5dp"
-                    android:textColor="@color/black" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Sexo"/>
-
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/spinner_sex"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/sex"
-        android:padding="3dp"
-        android:background="@drawable/background_gray_radius"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Tipo de sangre"/>
-
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/spinner_blood_types"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/blood_types"
-        android:padding="3dp"
-        android:background="@drawable/background_gray_radius"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Fecha de nacimiento"/>
-
-    <TextView
-        android:id="@+id/birth_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:background="@drawable/background_gray_radius"
-        android:layout_gravity="center_vertical"
-        android:hint="--/--/----"
-        android:textColor="@color/black"/>
-
-    <!--
-    EMERGENCY CONTACTS
-    -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:text="@string/emergency_contacts"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="3dp"
-        android:background="@color/colorPrimaryDark">
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Contacto uno"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginEnd="5dp"
-            android:orientation="vertical">
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="@android:color/darker_gray">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/name_contact_one"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/background_gray_radius"
                     android:hint="Nombre"
-                    android:inputType="text"
-                    android:padding="5dp"
-                    android:textColor="@color/black" />
-            </com.google.android.material.textfield.TextInputLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginStart="5dp"
-            android:orientation="vertical">
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="@android:color/darker_gray">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/phone_number_contact_one"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:hint="Número de teléfono"
                     android:background="@drawable/background_gray_radius"
                     android:padding="5dp"
                     android:textColor="@color/black" />
             </com.google.android.material.textfield.TextInputLayout>
 
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Contacto dos"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginEnd="5dp"
-            android:orientation="vertical">
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:textColorHint="@android:color/darker_gray">
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/name_contact_two"
+                    android:id="@+id/mother_last_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/background_gray_radius"
-                    android:hint="Nombre"
-                    android:inputType="text"
-                    android:padding="5dp"
-                    android:textColor="@color/black" />
-            </com.google.android.material.textfield.TextInputLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginStart="5dp"
-            android:orientation="vertical">
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="@android:color/darker_gray">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/phone_number_contact_two"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:hint="Número de teléfono"
+                    android:hint="Apellido materno"
                     android:background="@drawable/background_gray_radius"
                     android:padding="5dp"
                     android:textColor="@color/black" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColorHint="@android:color/darker_gray">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/father_last_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Apellido paterno"
+                    android:background="@drawable/background_gray_radius"
+                    android:padding="5dp"
+                    android:textColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="5dp"
+                    android:orientation="vertical">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@android:color/darker_gray">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/weight"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/background_gray_radius"
+                            android:hint="Peso"
+                            android:inputType="number"
+                            android:padding="5dp"
+                            android:textColor="@color/black" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="5dp"
+                    android:orientation="vertical">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@android:color/darker_gray">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/height"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:hint="Altura"
+                            android:background="@drawable/background_gray_radius"
+                            android:padding="5dp"
+                            android:textColor="@color/black" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Sexo"/>
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinner_sex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/sex"
+                android:padding="3dp"
+                android:background="@drawable/background_gray_radius"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Tipo de sangre"/>
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinner_blood_types"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/blood_types"
+                android:padding="3dp"
+                android:background="@drawable/background_gray_radius"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Fecha de nacimiento"/>
+
+            <TextView
+                android:id="@+id/birth_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:background="@drawable/background_gray_radius"
+                android:layout_gravity="center_vertical"
+                android:hint="__/__/____"
+                android:textColor="@color/black"/>
+
+            <!--
+            EMERGENCY CONTACTS
+            -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:text="@string/emergency_contacts"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="3dp"
+                android:background="@color/colorPrimaryDark">
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Contacto uno"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="3dp"
+                    android:layout_weight="1"
+                    android:textColorHint="@android:color/darker_gray">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/name_contact_one"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/background_gray_radius"
+                        android:hint="Nombre"
+                        android:inputType="text"
+                        android:padding="5dp"
+                        android:textColor="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:layout_weight="1"
+                    android:textColorHint="@android:color/darker_gray">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/phone_number_contact_one"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:hint="Número de teléfono"
+                        android:background="@drawable/background_gray_radius"
+                        android:padding="5dp"
+                        android:textColor="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Contacto dos"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="3dp"
+                    android:layout_weight="1"
+                    android:textColorHint="@android:color/darker_gray">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/name_contact_two"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/background_gray_radius"
+                        android:hint="Nombre"
+                        android:inputType="text"
+                        android:padding="5dp"
+                        android:textColor="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:layout_weight="1"
+                    android:textColorHint="@android:color/darker_gray">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/phone_number_contact_two"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:hint="Número de teléfono"
+                        android:background="@drawable/background_gray_radius"
+                        android:padding="5dp"
+                        android:textColor="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <!--
+            ALLERGIES
+            -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:text="@string/allergies"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="3dp"
+                android:background="@color/colorPrimaryDark">
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/allergies"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:text="¿Tiénes algun tipo de alergia?"/>
+
+                <RadioGroup
+                    android:id="@+id/rg_allergies"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rb_allergies_true"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="start"
+                        android:text="Si"/>
+                    <RadioButton
+                        android:id="@+id/rb_allergies_false"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="end"
+                        android:text="No"/>
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/container_input_allergies"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:visibility="gone"
+                android:textColorHint="@android:color/darker_gray">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/input_allergies"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Explica a qué eres alerico(a)"
+                    android:background="@drawable/background_gray_radius"
+                    android:padding="5dp"
+                    android:textColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!--
+            TOXIC HABITS
+            -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:text="@string/toxic_habits"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="3dp"
+                android:background="@color/colorPrimaryDark">
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Alcohol"/>
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinner_alcohol"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/general_options"
+                android:padding="3dp"
+                android:background="@drawable/background_gray_radius"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Tabaco"/>
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinner_tobacco"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/general_options"
+                android:padding="3dp"
+                android:background="@drawable/background_gray_radius"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Drogas"/>
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinner_drugs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/general_options"
+                android:padding="3dp"
+                android:background="@drawable/background_gray_radius"/>
+
+            <!-- DISEASES -->
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:text="@string/diseases"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="3dp"
+                android:background="@color/colorPrimaryDark">
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/respiratory"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:text="Respiratorias"/>
+
+                <RadioGroup
+                    android:id="@+id/rg_respiratory"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rb_respiratory_true"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="start"
+                        android:text="Si"/>
+                    <RadioButton
+                        android:id="@+id/rb_respiratory_false"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="end"
+                        android:text="No"/>
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/gastrointestinal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:text="Gastrointestinales"/>
+
+                <RadioGroup
+                    android:id="@+id/rg_gastrointestinal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rb_gastrointestinal_true"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="start"
+                        android:text="Si"/>
+                    <RadioButton
+                        android:id="@+id/rb_gastrointestinal_false"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="end"
+                        android:text="No"/>
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/nephrourological"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:text="Nefrourológicas"/>
+
+                <RadioGroup
+                    android:id="@+id/rg_nephrourological"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rb_nephrourological_true"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="start"
+                        android:text="Si"/>
+                    <RadioButton
+                        android:id="@+id/rb_nephrourological_false"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="end"
+                        android:text="No"/>
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/neurological"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:text="Neurológicas"/>
+
+                <RadioGroup
+                    android:id="@+id/rg_neurological"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rb_neurological_true"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="start"
+                        android:text="Si"/>
+                    <RadioButton
+                        android:id="@+id/rb_neurological_false"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="end"
+                        android:text="No"/>
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/hematological"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:text="Hematológicas"/>
+
+                <RadioGroup
+                    android:id="@+id/rg_hematological"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rb_hematological_true"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="start"
+                        android:text="Si"/>
+                    <RadioButton
+                        android:id="@+id/rb_hematological_false"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="end"
+                        android:text="No"/>
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/gynecological"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:text="Ginecológicas"/>
+
+                <RadioGroup
+                    android:id="@+id/rg_gynecological"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rb_gynecological_true"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="start"
+                        android:text="Si"/>
+                    <RadioButton
+                        android:id="@+id/rb_gynecological_false"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="end"
+                        android:text="No"/>
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/infectious"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:text="Infecciosas"/>
+
+                <RadioGroup
+                    android:id="@+id/rg_infectious"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rb_infectious_true"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="start"
+                        android:text="Si"/>
+                    <RadioButton
+                        android:id="@+id/rb_infectious_false"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="end"
+                        android:text="No"/>
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/endocrinological"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:text="Endocrinologicas"/>
+
+                <RadioGroup
+                    android:id="@+id/rg_endocrinological"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rb_endocrinological_true"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="start"
+                        android:text="Si"/>
+                    <RadioButton
+                        android:id="@+id/rb_endocrinological_false"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="end"
+                        android:text="No"/>
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/surgical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:text="Quirurgicas"/>
+
+                <RadioGroup
+                    android:id="@+id/rg_surgical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rb_surgical_true"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="start"
+                        android:text="Si"/>
+                    <RadioButton
+                        android:id="@+id/rb_surgical_false"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="end"
+                        android:text="No"/>
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/traumatic"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:text="Traumaticas"/>
+
+                <RadioGroup
+                    android:id="@+id/rg_traumatic"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rb_traumatic_true"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="start"
+                        android:text="Si"/>
+                    <RadioButton
+                        android:id="@+id/rb_traumatic_false"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="end"
+                        android:text="No"/>
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <!-- MEDICINES -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:text="@string/medicines"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="3dp"
+                android:background="@color/colorPrimaryDark">
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/medicines"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:text="¿Estas tomando algun medicamento?"/>
+
+                <RadioGroup
+                    android:id="@+id/rg_medicines"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rb_medicines_true"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="start"
+                        android:text="Si"/>
+                    <RadioButton
+                        android:id="@+id/rb_medicines_false"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="end"
+                        android:text="No"/>
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/container_medicines"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:textColorHint="@android:color/darker_gray">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/medicine_0"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/background_gray_radius"
+                            android:hint="Medicina"
+                            android:inputType="text"
+                            android:padding="5dp"
+                            android:textColor="@color/black" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColorHint="@android:color/darker_gray">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/units_0"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/background_gray_radius"
+                            android:hint="Unidades"
+                            android:inputType="text"
+                            android:padding="5dp"
+                            android:textColor="@color/black" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColorHint="@android:color/darker_gray">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/lapse_0"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/background_gray_radius"
+                            android:hint="Lapso (hrs)"
+                            android:inputType="number"
+                            android:padding="5dp"
+                            android:textColor="@color/black" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:focusable="false"
+                        android:textColorHint="@android:color/darker_gray">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/time_0"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:background="@drawable/background_gray_radius"
+                            android:hint="Hora"
+                            android:padding="5dp"
+                            android:textColor="@color/black" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:textColorHint="@android:color/darker_gray">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/medicine_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/background_gray_radius"
+                            android:hint="Medicina"
+                            android:inputType="text"
+                            android:padding="5dp"
+                            android:textColor="@color/black" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColorHint="@android:color/darker_gray">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/units_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/background_gray_radius"
+                            android:hint="Unidades"
+                            android:inputType="text"
+                            android:padding="5dp"
+                            android:textColor="@color/black" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColorHint="@android:color/darker_gray">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/lapse_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/background_gray_radius"
+                            android:hint="Lapso (hrs)"
+                            android:inputType="number"
+                            android:padding="5dp"
+                            android:textColor="@color/black" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:focusable="false"
+                        android:textColorHint="@android:color/darker_gray">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/time_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:background="@drawable/background_gray_radius"
+                            android:hint="Hora"
+                            android:padding="5dp"
+                            android:textColor="@color/black" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/background_button"
+                android:textColor="@color/white"
+                android:text="Guardar"
+                android:visibility="visible" />
+            <!-- _______________________
         </LinearLayout>
-
-    </LinearLayout>
-
-    <!--
-    ALLERGIES
-    -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:text="@string/allergies"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="3dp"
-        android:background="@color/colorPrimaryDark">
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/allergies"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:textSize="16sp"
-            android:text="¿Tiénes algun tipo de alergia?"/>
-
-        <RadioGroup
-            android:id="@+id/rg_allergies"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-            <RadioButton
-                android:id="@+id/rb_allergies_true"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="start"
-                android:text="Si"/>
-            <RadioButton
-                android:id="@+id/rb_allergies_false"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="end"
-                android:text="No"/>
-        </RadioGroup>
-
-    </LinearLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/container_input_allergies"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:visibility="gone"
-        android:textColorHint="@android:color/darker_gray">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/input_allergies"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Explica a qué eres alerico(a)"
-            android:background="@drawable/background_gray_radius"
-            android:padding="5dp"
-            android:textColor="@color/black" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <!--
-    TOXIC HABITS
-    -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:text="@string/toxic_habits"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="3dp"
-        android:background="@color/colorPrimaryDark">
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Alcohol"/>
-
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/spinner_alcohol"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/general_options"
-        android:padding="3dp"
-        android:background="@drawable/background_gray_radius"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Tabaco"/>
-
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/spinner_tobacco"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/general_options"
-        android:padding="3dp"
-        android:background="@drawable/background_gray_radius"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Drogas"/>
-
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/spinner_drugs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/general_options"
-        android:padding="3dp"
-        android:background="@drawable/background_gray_radius"/>
-
-    <!--
-    DISEASES
-    -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:text="@string/diseases"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="3dp"
-        android:background="@color/colorPrimaryDark">
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/respiratory"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:textSize="16sp"
-            android:text="Respiratorias"/>
-
-        <RadioGroup
-            android:id="@+id/rg_respiratory"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-            <RadioButton
-                android:id="@+id/rb_respiratory_true"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="start"
-                android:text="Si"/>
-            <RadioButton
-                android:id="@+id/rb_respiratory_false"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="end"
-                android:text="No"/>
-        </RadioGroup>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/gastrointestinal"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:textSize="16sp"
-            android:text="Gastrointestinales"/>
-
-        <RadioGroup
-            android:id="@+id/rg_gastrointestinal"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-            <RadioButton
-                android:id="@+id/rb_gastrointestinal_true"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="start"
-                android:text="Si"/>
-            <RadioButton
-                android:id="@+id/rb_gastrointestinal_false"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="end"
-                android:text="No"/>
-        </RadioGroup>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/nephrourological"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:textSize="16sp"
-            android:text="Nefrourológicas"/>
-
-        <RadioGroup
-            android:id="@+id/rg_nephrourological"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-            <RadioButton
-                android:id="@+id/rb_nephrourological_true"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="start"
-                android:text="Si"/>
-            <RadioButton
-                android:id="@+id/rb_nephrourological_false"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="end"
-                android:text="No"/>
-        </RadioGroup>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/neurological"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:textSize="16sp"
-            android:text="Neurológicas"/>
-
-        <RadioGroup
-            android:id="@+id/rg_neurological"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-            <RadioButton
-                android:id="@+id/rb_neurological_true"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="start"
-                android:text="Si"/>
-            <RadioButton
-                android:id="@+id/rb_neurological_false"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="end"
-                android:text="No"/>
-        </RadioGroup>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/hematological"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:textSize="16sp"
-            android:text="Hematológicas"/>
-
-        <RadioGroup
-            android:id="@+id/rg_hematological"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-            <RadioButton
-                android:id="@+id/rb_hematological_true"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="start"
-                android:text="Si"/>
-            <RadioButton
-                android:id="@+id/rb_hematological_false"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="end"
-                android:text="No"/>
-        </RadioGroup>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/gynecological"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:textSize="16sp"
-            android:text="Ginecológicas"/>
-
-        <RadioGroup
-            android:id="@+id/rg_gynecological"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-            <RadioButton
-                android:id="@+id/rb_gynecological_true"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="start"
-                android:text="Si"/>
-            <RadioButton
-                android:id="@+id/rb_gynecological_false"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="end"
-                android:text="No"/>
-        </RadioGroup>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/infectious"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:textSize="16sp"
-            android:text="Infecciosas"/>
-
-        <RadioGroup
-            android:id="@+id/rg_infectious"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-            <RadioButton
-                android:id="@+id/rb_infectious_true"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="start"
-                android:text="Si"/>
-            <RadioButton
-                android:id="@+id/rb_infectious_false"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="end"
-                android:text="No"/>
-        </RadioGroup>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/endocrinological"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:textSize="16sp"
-            android:text="Endocrinologicas"/>
-
-        <RadioGroup
-            android:id="@+id/rg_endocrinological"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-            <RadioButton
-                android:id="@+id/rb_endocrinological_true"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="start"
-                android:text="Si"/>
-            <RadioButton
-                android:id="@+id/rb_endocrinological_false"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="end"
-                android:text="No"/>
-        </RadioGroup>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/surgical"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:textSize="16sp"
-            android:text="Quirurgicas"/>
-
-        <RadioGroup
-            android:id="@+id/rg_surgical"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-            <RadioButton
-                android:id="@+id/rb_surgical_true"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="start"
-                android:text="Si"/>
-            <RadioButton
-                android:id="@+id/rb_surgical_false"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="end"
-                android:text="No"/>
-        </RadioGroup>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/traumatic"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:textSize="16sp"
-            android:text="Traumaticas"/>
-
-        <RadioGroup
-            android:id="@+id/rg_traumatic"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-            <RadioButton
-                android:id="@+id/rb_traumatic_true"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="start"
-                android:text="Si"/>
-            <RadioButton
-                android:id="@+id/rb_traumatic_false"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="end"
-                android:text="No"/>
-        </RadioGroup>
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/save"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/background_button"
-        android:textColor="@color/white"
-        android:text="Guardar"
-        android:visibility="visible" />
+    </ScrollView> -->
 
 </LinearLayout>

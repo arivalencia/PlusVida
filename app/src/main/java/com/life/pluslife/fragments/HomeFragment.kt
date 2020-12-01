@@ -1,6 +1,8 @@
 package com.life.pluslife.fragments
 
 import android.app.DatePickerDialog
+import android.app.TimePickerDialog
+import android.app.TimePickerDialog.OnTimeSetListener
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -17,6 +19,7 @@ import kotlinx.android.synthetic.main.component_form.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.util.*
 import kotlin.collections.ArrayList
+
 
 class HomeFragment: Fragment() {
 
@@ -37,6 +40,7 @@ class HomeFragment: Fragment() {
 
         val user = context?.let { LocalHelper(it).getUser() }
         Log.e("USER", user.toString())
+        val calendar = Calendar.getInstance()
 
         if (user?.email?.isNotEmpty()!!){
             if ( user.data != null){
@@ -60,7 +64,6 @@ class HomeFragment: Fragment() {
         }
 
         birth_date.setOnClickListener {
-            val calendar = Calendar.getInstance()
             DatePickerDialog(
                 requireContext(),
                 DatePickerDialog.OnDateSetListener { datePicker, i, i2, i3 ->
@@ -110,20 +113,41 @@ class HomeFragment: Fragment() {
                     if ( rb_traumatic_true.isChecked )        "Si" else "No"
                 )
 
-                val contactOne = EmergencyContact(
-                    name_contact_one.text.toString(),
-                    phone_number_contact_one.text.toString()
-                )
-                val contactTwo = EmergencyContact(
-                    name_contact_two.text.toString(),
-                    phone_number_contact_two.text.toString()
-                )
-
                 val arrayContacts = ArrayList<EmergencyContact>()
-                arrayContacts.add( contactOne )
-                arrayContacts.add( contactTwo )
+                arrayContacts.add(
+                    EmergencyContact(
+                        name_contact_one.text.toString(),
+                        phone_number_contact_one.text.toString()
+                    )
+                )
+                arrayContacts.add(
+                    EmergencyContact(
+                        name_contact_two.text.toString(),
+                        phone_number_contact_two.text.toString()
+                    )
+                )
 
-                val userData = UserData(personalInformation, arrayContacts, allergies, toxicHabits, diseases)
+                val arrayMedicines = ArrayList<Medicine>()
+                if ( rb_medicines_true.isChecked ) {
+                    arrayMedicines.add(
+                        Medicine(
+                            medicine_0.text.toString(),
+                            units_0.text.toString(),
+                            lapse_0.text.toString(),
+                            time_0.text.toString()
+                        )
+                    )
+                    arrayMedicines.add(
+                        Medicine(
+                            medicine_1.text.toString(),
+                            units_1.text.toString(),
+                            lapse_1.text.toString(),
+                            time_1.text.toString()
+                        )
+                    )
+                }
+
+                val userData = UserData(personalInformation, arrayContacts, allergies, toxicHabits, diseases, arrayMedicines)
                 val jsonData = Gson().toJson(userData)
 
                 if ( user.email!!.isNotEmpty() ){
@@ -145,140 +169,10 @@ class HomeFragment: Fragment() {
         }
 
         btn_edit_data.setOnClickListener {
-
             showForm()
-            val userData = user.data
-
             if ( user.data != null ) {
-                val personalI: PersonalInformation = userData?.personalInformation!!
-                val emergencyC: ArrayList<EmergencyContact> = ArrayList(userData.emergencyContacts)
-                val allergies: String = userData.allergies
-                val toxicHabits: ToxicHabits = userData.toxicHabits
-                val diseases: Diseases = userData.diseases
-
-                name.setText( personalI.name )
-                mother_last_name.setText( personalI.motherLastName )
-                father_last_name.setText( personalI.fatherLastName )
-                weight.setText( personalI.weight.toString() )
-                height.setText( personalI.height.toString() )
-
-                birthDate = personalI.birthDate
-                val index = personalI.birthDate.indexOf("/") + 1
-                val lastIndex = personalI.birthDate.lastIndexOf("/")
-                val month = personalI.birthDate.substring(index, lastIndex).toInt() + 1
-                val date =  personalI.birthDate.replaceRange(index, lastIndex, month.toString())
-
-                birth_date.setText( date )
-
-                name_contact_one.setText( emergencyC[0].name)
-                phone_number_contact_one.setText( emergencyC[0].phoneNumber)
-                name_contact_two.setText( emergencyC[1].name)
-                phone_number_contact_two.setText( emergencyC[1].phoneNumber)
-
-                if ( allergies.isEmpty() ) {
-                    rb_allergies_false.isChecked = true
-                } else {
-                    rb_allergies_true.isChecked = true
-                    input_allergies.setText( allergies )
-                    container_input_allergies.visibility = View.VISIBLE
-                }
-
-                spinner_sex.setSelection( if (personalI.sex.equals("Femenino")) 1 else 2 )
-
-                when ( personalI.bloodType ) {
-                    "O+" -> spinner_blood_types.setSelection(1)
-                    "O-" -> spinner_blood_types.setSelection(2)
-                    "A+" -> spinner_blood_types.setSelection(3)
-                    "A-" -> spinner_blood_types.setSelection(4)
-                    "B+" -> spinner_blood_types.setSelection(5)
-                    "B-" -> spinner_blood_types.setSelection(6)
-                    "AB+" -> spinner_blood_types.setSelection(7)
-                    "AB-" -> spinner_blood_types.setSelection(8)
-                }
-
-                when ( toxicHabits.alcohol ) {
-                    "Nunca" -> spinner_alcohol.setSelection(1)
-                    "Ocasionalmente" -> spinner_alcohol.setSelection(2)
-                    "Generalmente" -> spinner_alcohol.setSelection(3)
-                    "Siempre" -> spinner_alcohol.setSelection(4)
-                }
-
-                when ( toxicHabits.tobacco ) {
-                    "Nunca" -> spinner_tobacco.setSelection(1)
-                    "Ocasionalmente" -> spinner_tobacco.setSelection(2)
-                    "Generalmente" -> spinner_tobacco.setSelection(3)
-                    "Siempre" -> spinner_tobacco.setSelection(4)
-                }
-
-                when ( toxicHabits.drugs ) {
-                    "Nunca" -> spinner_drugs.setSelection(1)
-                    "Ocasionalmente" -> spinner_drugs.setSelection(2)
-                    "Generalmente" -> spinner_drugs.setSelection(3)
-                    "Siempre" -> spinner_drugs.setSelection(4)
-                }
-
-                if ( diseases.respiratory.equals("Si") ) {
-                    rb_respiratory_true.isChecked = true
-                } else {
-                    rb_respiratory_false.isChecked = true
-                }
-
-                if ( diseases.gastrointestinal.equals("Si") ) {
-                    rb_gastrointestinal_true.isChecked = true
-                } else {
-                    rb_gastrointestinal_false.isChecked = true
-                }
-
-                if ( diseases.nephrourological.equals("Si") ) {
-                    rb_nephrourological_true.isChecked = true
-                } else {
-                    rb_nephrourological_false.isChecked = true
-                }
-
-                if ( diseases.neurological.equals("Si") ) {
-                    rb_neurological_true.isChecked = true
-                } else {
-                    rb_neurological_false.isChecked = true
-                }
-
-                if ( diseases.hematological.equals("Si") ) {
-                    rb_hematological_true.isChecked = true
-                } else {
-                    rb_hematological_false.isChecked = true
-                }
-
-                if ( diseases.gynecological.equals("Si") ) {
-                    rb_gynecological_true.isChecked = true
-                } else {
-                    rb_gynecological_false.isChecked = true
-                }
-
-                if ( diseases.infectious.equals("Si") ) {
-                    rb_infectious_true.isChecked = true
-                } else {
-                    rb_infectious_false.isChecked = true
-                }
-
-                if ( diseases.endocrinological.equals("Si") ) {
-                    rb_endocrinological_true.isChecked = true
-                } else {
-                    rb_endocrinological_false.isChecked = true
-                }
-
-                if ( diseases.surgical.equals("Si") ) {
-                    rb_surgical_true.isChecked = true
-                } else {
-                    rb_surgical_false.isChecked = true
-                }
-
-                if ( diseases.traumatic.equals("Si") ) {
-                    rb_traumatic_true.isChecked = true
-                } else {
-                    rb_traumatic_false.isChecked = true
-                }
-
+                fillData(user.data!!)
             }
-
         }
 
         rb_allergies_false.setOnClickListener {
@@ -287,6 +181,38 @@ class HomeFragment: Fragment() {
 
         rb_allergies_true.setOnClickListener {
             container_input_allergies.visibility = View.VISIBLE
+        }
+
+        rb_medicines_false.setOnClickListener {
+            container_medicines.visibility = View.GONE
+        }
+
+        rb_medicines_true.setOnClickListener {
+            container_medicines.visibility = View.VISIBLE
+        }
+
+        time_0.setOnClickListener {
+            TimePickerDialog(
+                requireContext(),
+                OnTimeSetListener { view, hourOfDay, minute ->
+                    time_0.setText( "${hourOfDay}:${minute}" )
+                },
+                calendar.get(Calendar.HOUR),
+                calendar.get(Calendar.MINUTE),
+                false
+            ).show()
+        }
+
+        time_1.setOnClickListener {
+            TimePickerDialog(
+                requireContext(),
+                OnTimeSetListener { view, hourOfDay, minute ->
+                    time_1.setText( "${hourOfDay}:${minute}" )
+                },
+                calendar.get(Calendar.HOUR),
+                calendar.get(Calendar.MINUTE),
+                false
+            ).show()
         }
 
         /*db.collection("users").document(user.email!!).delete()
@@ -298,6 +224,31 @@ class HomeFragment: Fragment() {
         title.text = "Hola ${user.data!!.personalInformation.name}"
         registered.visibility = View.VISIBLE
         form.visibility = View.GONE
+
+        val medicines = user.data!!.medicines
+
+        if ( medicines.isEmpty() ) {
+            no_medicines.visibility = View.VISIBLE
+            container_all_medicines.visibility = View.GONE
+        } else {
+            no_medicines.visibility = View.GONE
+            container_all_medicines.visibility = View.VISIBLE
+            txt_medicine_0.text = medicines[0].name
+            txt_units_0.text = medicines[0].units
+            txt_time_0.text = medicines[0].time
+            txt_lapse_0.text = medicines[0].lapse
+
+            if ( medicines[1].name.isEmpty() ) {
+                container_medicine_1.visibility = View.GONE
+            } else {
+                container_medicine_1.visibility = View.VISIBLE
+
+                txt_medicine_1.text = medicines[1].name
+                txt_units_1.text = medicines[1].units
+                txt_time_1.text = medicines[1].time
+                txt_lapse_1.text = medicines[1].lapse
+            }
+        }
     }
 
     private fun showForm() {
@@ -307,146 +258,317 @@ class HomeFragment: Fragment() {
     }
 
     private fun validateData(): Boolean {
-        var boolean = true
+        var success = true
 
         if ( name.text.toString().isEmpty() ){
             name.error = "Se necesita un nombre"
-            boolean = false
+            success = false
         }
 
         if ( mother_last_name.text.toString().isEmpty() ){
             mother_last_name.error = "Se necesita un apellido"
-            boolean = false
+            success = false
         }
 
         if ( father_last_name.text.toString().isEmpty() ){
             father_last_name.error = "Se necesita un apellido"
-            boolean = false
+            success = false
         }
 
         if ( weight.text.toString().isEmpty() ){
             weight.error = "Ingrese su peso"
-            boolean = false
+            success = false
         }
 
         if ( height.text.toString().isEmpty() ){
             height.error = "Ingrese su altura"
-            boolean = false
+            success = false
         }
 
         if ( spinner_sex.selectedItemPosition == 0 ){
             Toast.makeText( requireContext(), "Seleccione un sexo", Toast.LENGTH_SHORT ).show()
-            boolean = false
+            success = false
         }
 
         if ( spinner_blood_types.selectedItemPosition == 0 ) {
             Toast.makeText( requireContext(), "Seleccione su tipo de sangre", Toast.LENGTH_SHORT ).show()
-            boolean = false
+            success = false
         }
 
         if ( birthDate == ""){
             Toast.makeText( requireContext(), "Introduzca su fecha de nacimiento", Toast.LENGTH_SHORT ).show()
-            boolean = false
+            success = false
         }
 
         if ( name_contact_one.text.toString().isEmpty() ){
             name_contact_one.error = ""
-            boolean = false
+            success = false
         }
 
         if ( phone_number_contact_one.text.toString().isEmpty() ){
             phone_number_contact_one.error = ""
-            boolean = false
+            success = false
         }
 
         if ( name_contact_two.text.toString().isEmpty() ){
             name_contact_two.error = ""
-            boolean = false
+            success = false
         }
 
         if ( phone_number_contact_two.text.toString().isEmpty() ){
             phone_number_contact_two.error = ""
-            boolean = false
+            success = false
         }
 
         if ( rg_allergies.checkedRadioButtonId == -1 ){
             allergies.error = ""
-            boolean = false
+            success = false
         } else {
             if ( rb_allergies_true.isChecked ){
                 if ( input_allergies.text.toString().isEmpty() ){
                     input_allergies.error = "Introduce a que eres alergico(a)"
-                    boolean = false
+                    success = false
                 }
             }
         }
 
         if ( spinner_alcohol.selectedItemPosition == 0 ) {
             Toast.makeText( requireContext(), "Selecciona tu consumo de alcohol", Toast.LENGTH_SHORT).show()
-            boolean = false
+            success = false
         }
 
         if ( spinner_tobacco.selectedItemPosition == 0 ) {
             Toast.makeText( requireContext(), "Selecciona tu consumo de tabaco", Toast.LENGTH_SHORT).show()
-            boolean = false
+            success = false
         }
 
         if ( spinner_drugs.selectedItemPosition == 0 ) {
             Toast.makeText( requireContext(), "Selecciona tu consumo de drogas", Toast.LENGTH_SHORT).show()
-            boolean = false
+            success = false
         }
 
         if ( rg_respiratory.checkedRadioButtonId == -1 ){
             respiratory.error = ""
-            boolean = false
+            success = false
         }
 
         if ( rg_gastrointestinal.checkedRadioButtonId == -1 ){
             gastrointestinal.error = ""
-            boolean = false
+            success = false
         }
 
         if ( rg_nephrourological.checkedRadioButtonId == -1 ){
             nephrourological.error = ""
-            boolean = false
+            success = false
         }
 
         if ( rg_neurological.checkedRadioButtonId == -1 ){
             neurological.error = ""
-            boolean = false
+            success = false
         }
 
         if ( rg_hematological.checkedRadioButtonId == -1 ){
             hematological.error = ""
-            boolean = false
+            success = false
         }
 
         if ( rg_gynecological.checkedRadioButtonId == -1 ){
             gynecological.error = ""
-            boolean = false
+            success = false
         }
 
         if ( rg_infectious.checkedRadioButtonId == -1 ){
             infectious.error = ""
-            boolean = false
+            success = false
         }
 
         if ( rg_endocrinological.checkedRadioButtonId == -1 ){
             endocrinological.error = ""
-            boolean = false
+            success = false
         }
 
         if ( rg_surgical.checkedRadioButtonId == -1 ){
             surgical.error = ""
-            boolean = false
+            success = false
         }
 
         if ( rg_traumatic.checkedRadioButtonId == -1 ){
             traumatic.error = ""
-            boolean = false
+            success = false
         }
 
-        return boolean
+        if ( rg_medicines.checkedRadioButtonId == -1 ){
+            medicines.error = ""
+            success = false
+        } else {
+            if ( rb_medicines_true.isChecked ){
+                if ( medicine_0.text.toString().isEmpty() ){
+                    medicine_0.error = "Introduce el medicamento"
+                    success = false
+                }
+                if ( units_0.text.toString().isEmpty() ){
+                    units_0.error = "Introduce las unidades"
+                    success = false
+                }
+                if ( lapse_0.text.toString().isEmpty() ){
+                    lapse_0.error = "Lapso entre cada consumo"
+                    success = false
+                }
+                if ( time_0.text.toString().isEmpty() ){
+                    time_0.error = "Hora de ingerir medicamento"
+                    success = false
+                }
+            }
+        }
+
+        return success
+    }
+
+    private fun fillData(userData: UserData) {
+        val personalI: PersonalInformation = userData?.personalInformation!!
+        val emergencyC: ArrayList<EmergencyContact> = ArrayList(userData.emergencyContacts)
+        val allergies: String = userData.allergies
+        val toxicHabits: ToxicHabits = userData.toxicHabits
+        val diseases: Diseases = userData.diseases
+
+        name.setText( personalI.name )
+        mother_last_name.setText( personalI.motherLastName )
+        father_last_name.setText( personalI.fatherLastName )
+        weight.setText( personalI.weight.toString() )
+        height.setText( personalI.height.toString() )
+
+        birthDate = personalI.birthDate
+        val index = personalI.birthDate.indexOf("/") + 1
+        val lastIndex = personalI.birthDate.lastIndexOf("/")
+        val month = personalI.birthDate.substring(index, lastIndex).toInt() + 1
+        val date =  personalI.birthDate.replaceRange(index, lastIndex, month.toString())
+
+        birth_date.setText( date )
+
+        name_contact_one.setText( emergencyC[0].name)
+        phone_number_contact_one.setText( emergencyC[0].phoneNumber)
+        name_contact_two.setText( emergencyC[1].name)
+        phone_number_contact_two.setText( emergencyC[1].phoneNumber)
+
+        if ( allergies.isEmpty() ) {
+            rb_allergies_false.isChecked = true
+        } else {
+            rb_allergies_true.isChecked = true
+            input_allergies.setText( allergies )
+            container_input_allergies.visibility = View.VISIBLE
+        }
+
+        spinner_sex.setSelection( if (personalI.sex.equals("Femenino")) 1 else 2 )
+
+        when ( personalI.bloodType ) {
+            "O+" -> spinner_blood_types.setSelection(1)
+            "O-" -> spinner_blood_types.setSelection(2)
+            "A+" -> spinner_blood_types.setSelection(3)
+            "A-" -> spinner_blood_types.setSelection(4)
+            "B+" -> spinner_blood_types.setSelection(5)
+            "B-" -> spinner_blood_types.setSelection(6)
+            "AB+" -> spinner_blood_types.setSelection(7)
+            "AB-" -> spinner_blood_types.setSelection(8)
+        }
+
+        when ( toxicHabits.alcohol ) {
+            "Nunca" -> spinner_alcohol.setSelection(1)
+            "Ocasionalmente" -> spinner_alcohol.setSelection(2)
+            "Generalmente" -> spinner_alcohol.setSelection(3)
+            "Siempre" -> spinner_alcohol.setSelection(4)
+        }
+
+        when ( toxicHabits.tobacco ) {
+            "Nunca" -> spinner_tobacco.setSelection(1)
+            "Ocasionalmente" -> spinner_tobacco.setSelection(2)
+            "Generalmente" -> spinner_tobacco.setSelection(3)
+            "Siempre" -> spinner_tobacco.setSelection(4)
+        }
+
+        when ( toxicHabits.drugs ) {
+            "Nunca" -> spinner_drugs.setSelection(1)
+            "Ocasionalmente" -> spinner_drugs.setSelection(2)
+            "Generalmente" -> spinner_drugs.setSelection(3)
+            "Siempre" -> spinner_drugs.setSelection(4)
+        }
+
+        if ( diseases.respiratory.equals("Si") ) {
+            rb_respiratory_true.isChecked = true
+        } else {
+            rb_respiratory_false.isChecked = true
+        }
+
+        if ( diseases.gastrointestinal.equals("Si") ) {
+            rb_gastrointestinal_true.isChecked = true
+        } else {
+            rb_gastrointestinal_false.isChecked = true
+        }
+
+        if ( diseases.nephrourological.equals("Si") ) {
+            rb_nephrourological_true.isChecked = true
+        } else {
+            rb_nephrourological_false.isChecked = true
+        }
+
+        if ( diseases.neurological.equals("Si") ) {
+            rb_neurological_true.isChecked = true
+        } else {
+            rb_neurological_false.isChecked = true
+        }
+
+        if ( diseases.hematological.equals("Si") ) {
+            rb_hematological_true.isChecked = true
+        } else {
+            rb_hematological_false.isChecked = true
+        }
+
+        if ( diseases.gynecological.equals("Si") ) {
+            rb_gynecological_true.isChecked = true
+        } else {
+            rb_gynecological_false.isChecked = true
+        }
+
+        if ( diseases.infectious.equals("Si") ) {
+            rb_infectious_true.isChecked = true
+        } else {
+            rb_infectious_false.isChecked = true
+        }
+
+        if ( diseases.endocrinological.equals("Si") ) {
+            rb_endocrinological_true.isChecked = true
+        } else {
+            rb_endocrinological_false.isChecked = true
+        }
+
+        if ( diseases.surgical.equals("Si") ) {
+            rb_surgical_true.isChecked = true
+        } else {
+            rb_surgical_false.isChecked = true
+        }
+
+        if ( diseases.traumatic.equals("Si") ) {
+            rb_traumatic_true.isChecked = true
+        } else {
+            rb_traumatic_false.isChecked = true
+        }
+
+        if ( userData.medicines.isEmpty() ) {
+            rb_medicines_false.isChecked = true
+        } else {
+            rb_medicines_true.isChecked = true
+            container_medicines.visibility = View.VISIBLE
+
+            medicine_0.setText( userData.medicines[0].name )
+            units_0.setText( userData.medicines[0].units )
+            lapse_0.setText( userData.medicines[0].lapse )
+            time_0.setText( userData.medicines[0].time )
+
+            medicine_1.setText( userData.medicines[1].name )
+            units_1.setText( userData.medicines[1].units )
+            lapse_1.setText( userData.medicines[1].lapse )
+            time_1.setText( userData.medicines[1].time )
+
+        }
     }
 
 }

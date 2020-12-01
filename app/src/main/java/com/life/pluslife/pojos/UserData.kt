@@ -9,7 +9,8 @@ data class UserData(
     var emergencyContacts: ArrayList<EmergencyContact>,
     var allergies: String,
     var toxicHabits: ToxicHabits,
-    var diseases: Diseases
+    var diseases: Diseases,
+    var medicines: ArrayList<Medicine>
 ): Parcelable
 
 @Parcelize
@@ -54,4 +55,12 @@ data class Diseases(
     var endocrinological: String,
     var surgical: String,
     var traumatic: String
+): Parcelable
+
+@Parcelize
+data class Medicine(
+    var name: String,
+    var units: String,
+    var lapse: String,
+    var time: String
 ): Parcelable

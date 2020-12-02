@@ -85,13 +85,27 @@
             android:background="@drawable/background_button"
             android:text="Ingresar"/>
 
-        <Button
-            android:id="@+id/button_google"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:layout_marginTop="10dp"
             android:background="@drawable/background_white_stroke"
-            android:text="Google"/>
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_google_icon"/>
+
+            <Button
+                android:id="@+id/button_google"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:text="Google"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

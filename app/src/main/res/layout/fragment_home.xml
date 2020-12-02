@@ -18,19 +18,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:id="@+id/title"
+                    android:id="@+id/title_page"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingStart="15dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
+                    android:textSize="22sp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
-                    android:text="Mis datos"/>
+                    android:text="Hola"/>
             </androidx.cardview.widget.CardView>
 
             <include
+                android:id="@+id/form"
                 layout="@layout/component_form"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

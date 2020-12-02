@@ -17,9 +17,9 @@ import com.life.pluslife.helpers.LocalHelper
 import com.life.pluslife.pojos.*
 import kotlinx.android.synthetic.main.component_form.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_home.view.*
 import java.util.*
 import kotlin.collections.ArrayList
-
 
 class HomeFragment: Fragment() {
 
@@ -44,20 +44,23 @@ class HomeFragment: Fragment() {
 
         if (user?.email?.isNotEmpty()!!){
             if ( user.data != null){
-                hideForm(user)
+                Log.e("INSIDE BY ", "user.data")
+                hideForm(user, view)
             } else {
                 db.collection("users").document(user.email!!).get()
                     .addOnSuccessListener {
                         if ( it.exists() ){
 
+                            Log.e("INSIDE BY ", "firebase SUCCESS")
                             user.data = Gson().fromJson<UserData>(it["data"].toString(), UserData::class.java)
-                            Log.e("USER--", user.toString())
+                            Log.e("USER FROM FIREBASE", user.toString())
                             context?.let { it1 -> LocalHelper(it1).setUser(user) }
 
-                            hideForm(user)
+                            hideForm(user, view)
 
                         } else {
-                            showForm()
+                            Log.e("INSIDE BY ", "no data")
+                            showForm(view)
                         }
                     }
             }
@@ -161,7 +164,7 @@ class HomeFragment: Fragment() {
                             context?.let { it1 -> LocalHelper(it1).setUser(user) }
 
                             Toast.makeText(context, "Datos guardados", Toast.LENGTH_SHORT).show()
-                            hideForm(user)
+                            hideForm(user, view)
                         }
                     }
                 }
@@ -169,7 +172,7 @@ class HomeFragment: Fragment() {
         }
 
         btn_edit_data.setOnClickListener {
-            showForm()
+            showForm(view)
             if ( user.data != null ) {
                 fillData(user.data!!)
             }
@@ -220,41 +223,41 @@ class HomeFragment: Fragment() {
         LocalHelper( requireContext() ).setUser(user)*/
     }
 
-    private fun hideForm(user: User){
-        title.text = "Hola ${user.data!!.personalInformation.name}"
-        registered.visibility = View.VISIBLE
-        form.visibility = View.GONE
+    private fun hideForm(user: User, view: View){
+        view.title_page.text = "Hola " + (user.data?.personalInformation?.name ?: "")
+        view.registered.visibility = View.VISIBLE
+        view.form.visibility = View.GONE
 
         val medicines = user.data!!.medicines
 
         if ( medicines.isEmpty() ) {
-            no_medicines.visibility = View.VISIBLE
-            container_all_medicines.visibility = View.GONE
+            view.no_medicines.visibility = View.VISIBLE
+            view.container_all_medicines.visibility = View.GONE
         } else {
-            no_medicines.visibility = View.GONE
-            container_all_medicines.visibility = View.VISIBLE
-            txt_medicine_0.text = medicines[0].name
-            txt_units_0.text = medicines[0].units
-            txt_time_0.text = medicines[0].time
-            txt_lapse_0.text = medicines[0].lapse
+            view.no_medicines.visibility = View.GONE
+            view.container_all_medicines.visibility = View.VISIBLE
+            view.txt_medicine_0.text = medicines[0].name
+            view.txt_units_0.text = medicines[0].units
+            view.txt_time_0.text = medicines[0].time
+            view.txt_lapse_0.text = medicines[0].lapse
 
             if ( medicines[1].name.isEmpty() ) {
-                container_medicine_1.visibility = View.GONE
+                view.container_medicine_1.visibility = View.GONE
             } else {
-                container_medicine_1.visibility = View.VISIBLE
+                view.container_medicine_1.visibility = View.VISIBLE
 
-                txt_medicine_1.text = medicines[1].name
-                txt_units_1.text = medicines[1].units
-                txt_time_1.text = medicines[1].time
-                txt_lapse_1.text = medicines[1].lapse
+                view.txt_medicine_1.text = medicines[1].name
+                view.txt_units_1.text = medicines[1].units
+                view.txt_time_1.text = medicines[1].time
+                view.txt_lapse_1.text = medicines[1].lapse
             }
         }
     }
 
-    private fun showForm() {
-        title.text = "Ingresar mis datos de ayuda"
-        registered.visibility = View.GONE
-        form.visibility = View.VISIBLE
+    private fun showForm(view: View) {
+        view.title_page.text = "Ingresar mis datos de ayuda"
+        view.registered.visibility = View.GONE
+        view.form.visibility = View.VISIBLE
     }
 
     private fun validateData(): Boolean {

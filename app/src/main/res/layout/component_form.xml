@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/form"
+
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingEnd="15dp"
@@ -55,10 +55,10 @@
                 android:layout_marginTop="5dp"
                 android:textColorHint="@android:color/darker_gray">
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/mother_last_name"
+                    android:id="@+id/father_last_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Apellido materno"
+                    android:hint="Apellido paterno"
                     android:background="@drawable/background_gray_radius"
                     android:padding="5dp"
                     android:textColor="@color/black" />
@@ -70,10 +70,10 @@
                 android:layout_marginTop="5dp"
                 android:textColorHint="@android:color/darker_gray">
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/father_last_name"
+                    android:id="@+id/mother_last_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Apellido paterno"
+                    android:hint="Apellido materno"
                     android:background="@drawable/background_gray_radius"
                     android:padding="5dp"
                     android:textColor="@color/black" />

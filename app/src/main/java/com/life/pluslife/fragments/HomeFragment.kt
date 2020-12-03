@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
 import com.life.pluslife.R
@@ -44,14 +45,12 @@ class HomeFragment: Fragment() {
 
         if (user?.email?.isNotEmpty()!!){
             if ( user.data != null){
-                Log.e("INSIDE BY ", "user.data")
                 hideForm(user, view)
             } else {
                 db.collection("users").document(user.email!!).get()
                     .addOnSuccessListener {
                         if ( it.exists() ){
 
-                            Log.e("INSIDE BY ", "firebase SUCCESS")
                             user.data = Gson().fromJson<UserData>(it["data"].toString(), UserData::class.java)
                             Log.e("USER FROM FIREBASE", user.toString())
                             context?.let { it1 -> LocalHelper(it1).setUser(user) }
@@ -59,7 +58,6 @@ class HomeFragment: Fragment() {
                             hideForm(user, view)
 
                         } else {
-                            Log.e("INSIDE BY ", "no data")
                             showForm(view)
                         }
                     }

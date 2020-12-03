@@ -1,6 +1,7 @@
 package com.life.pluslife
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
@@ -13,13 +14,15 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity: AppCompatActivity() {
 
-    val homeFragment = HomeFragment()
+    val TAG = "MainActivity"
+    val helpFragment = HelpFragment()
+    var currentFragment: Fragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val helpFragment = HelpFragment()
+        val homeFragment = HomeFragment()
         val optionsFragment = OptionsFragment()
 
         bottom_navigation.setOnNavigationItemSelectedListener {
@@ -39,7 +42,6 @@ class MainActivity: AppCompatActivity() {
                 else -> false
             }
         }
-        bottom_navigation.selectedItemId = R.id.home
         bottom_navigation.selectedItemId = R.id.help
 
         /*val analytics = FirebaseAnalytics.getInstance(this)
@@ -50,15 +52,31 @@ class MainActivity: AppCompatActivity() {
     }
 
     private fun setUpFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.frame_container, fragment)
+        val transaction = supportFragmentManager.beginTransaction()
+
+        if ( currentFragment == null ) {
+            transaction.add(R.id.frame_container, fragment)
+        } else {
+            if (fragment.isAdded) {
+                transaction
+                    .hide(currentFragment!!)
+                    .show(fragment)
+            } else {
+                transaction
+                    .hide(currentFragment!!)
+                    .add(R.id.frame_container, fragment)
+            }
+        }
+        transaction
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-            .addToBackStack(null)
+            //.addToBackStack(null)
             .commitAllowingStateLoss()
+
+        currentFragment = fragment
     }
 
     override fun onBackPressed() {
-        if ( homeFragment.isVisible ) { finish() }
+        if ( helpFragment.isVisible ) { finish() }
         else { super.onBackPressed() }
     }
 }

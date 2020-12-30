@@ -58,12 +58,8 @@ class HelpFragment: Fragment() {
                     intentBrowser.data = Uri.parse(Constants.BASE_URL + user.email)
                     startActivity(intentBrowser)
                 }
-            } else {
-                noData()
-            }
-        } else {
-            noData()
-        }
+            } else { noData() }
+        } else { noData() }
 
     }
 
@@ -92,4 +88,5 @@ class HelpFragment: Fragment() {
         qr_code.visibility = View.GONE
         text_your_code.text = "Llena tus datos para generar tu codigo QR"
     }
+
 }
